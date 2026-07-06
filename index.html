@@ -339,7 +339,7 @@ footer { border-top: 1px solid var(--border); padding: 16px 0; color: #5a5f68; f
   <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
   <nav class="topnav" id="topNav">
     <a href="#layanan">Layanan</a>
-    <a href="#skillset">Arsenal</a>
+    <a href="#showcase">Showcase</a>
     <a href="#harga">Harga</a>
   </nav>
 </div>
@@ -407,10 +407,10 @@ footer { border-top: 1px solid var(--border); padding: 16px 0; color: #5a5f68; f
   </div>
 </section>
 
-<section class="section" id="skillset" style="background:linear-gradient(180deg, transparent, rgba(0,255,200,0.04), transparent);">
+<section class="section" id="showcase" style="background:linear-gradient(180deg, transparent, rgba(0,255,200,0.04), transparent);">
   <div class="container">
     <div class="section-header">
-      <span class="section-badge">// Arsenal</span>
+      <span class="section-badge">// Showcase</span>
       <h2 class="section-title">Contoh Kemampuan</h2>
       <p class="section-desc">Kategori dan use-case yang bisa gue kerjakan.</p>
     </div>
@@ -535,6 +535,7 @@ const revealObs = new IntersectionObserver(entries => {
   entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); revealObs.unobserve(en.target); } });
 }, { threshold: 0.06 });
 document.querySelectorAll('.reveal').forEach(x => revealObs.observe(x));
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 </script>
 </body>
