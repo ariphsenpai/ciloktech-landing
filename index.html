@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CILOK TECH // DIGITAL OPERATOR</title>
 <meta name="description" content="Full-spectrum digital operator. Website, bot, dashboard, scraping, automation, AI, crypto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #03050a;
@@ -23,7 +26,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 84px; }
 body {
-  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: 'Share Tech Mono', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background:
     radial-gradient(800px 600px at 10% 0%, rgba(0,255,200,0.10), transparent 55%),
     radial-gradient(900px 700px at 110% 10%, rgba(0,168,255,0.10), transparent 55%),
@@ -36,6 +39,7 @@ a { color: var(--neon3); text-decoration: none; }
 a:hover { color: var(--neon1); text-shadow: 0 0 8px var(--neon1); }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
+/* CRT scanlines + flicker */
 body::before {
   content: '';
   position: fixed;
@@ -45,20 +49,27 @@ body::before {
   z-index: 90;
   opacity: 0.35;
   mix-blend-mode: overlay;
+  animation: scanFlicker 5s steps(60) infinite;
 }
+@keyframes scanFlicker { 0%,100% { opacity:.32 } 48% { opacity:.38 } 50% { opacity:.30 } 52% { opacity:.4 } }
+
+/* moving neon grid */
 body::after {
   content: '';
   position: fixed;
-  inset: 0;
+  inset: -50%;
   background-image:
-    linear-gradient(rgba(0,255,200,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,255,200,0.05) 1px, transparent 1px);
+    linear-gradient(rgba(0,255,200,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,200,0.06) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.4;
+  opacity: 0.45;
+  animation: gridMove 18s linear infinite;
 }
+@keyframes gridMove { from { transform: translate(0,0); } to { transform: translate(60px,60px); } }
 
+/* ===== Topbar ===== */
 .topbar {
   position: fixed;
   top: 14px; left: 20px; right: 20px;
@@ -77,6 +88,7 @@ body::after {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  font-family: 'Orbitron', sans-serif;
   font-weight: 900;
   color: #fff;
   letter-spacing: 1px;
@@ -90,6 +102,41 @@ body::after {
   display: inline-flex; align-items: center; justify-content: center;
   color: #001a14; font-weight: 900;
 }
+.brand-name { position: relative; display: inline-block; }
+
+/* glitch */
+.glitch { position: relative; }
+.glitch::before, .glitch::after {
+  content: attr(data-text);
+  position: absolute; left: 0; top: 0; width: 100%;
+  overflow: hidden;
+}
+.glitch::before {
+  color: var(--neon2);
+  clip-path: inset(0 0 55% 0);
+  animation: glitchTop 2.6s infinite linear alternate;
+  text-shadow: -2px 0 var(--neon2);
+}
+.glitch::after {
+  color: var(--neon3);
+  clip-path: inset(55% 0 0 0);
+  animation: glitchBot 2.1s infinite linear alternate;
+  text-shadow: 2px 0 var(--neon3);
+}
+@keyframes glitchTop {
+  0%,100% { transform: translate(0,0); }
+  20% { transform: translate(-2px,-1px); }
+  40% { transform: translate(2px,1px); }
+  60% { transform: translate(-1px,0); }
+  80% { transform: translate(1px,-1px); }
+}
+@keyframes glitchBot {
+  0%,100% { transform: translate(0,0); }
+  25% { transform: translate(2px,1px); }
+  50% { transform: translate(-2px,-1px); }
+  75% { transform: translate(1px,1px); }
+}
+
 .topnav { display: flex; gap: 6px; align-items: center; }
 .topnav a {
   color: #b8bcc4;
@@ -102,6 +149,7 @@ body::after {
 .topnav a:hover { color: #fff; background: rgba(255,255,255,0.08); text-decoration: none; box-shadow: 0 0 0 1px rgba(0,255,200,0.25); }
 .nav-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.2rem; cursor: pointer; }
 
+/* ===== Hero ===== */
 .hero {
   position: relative;
   z-index: 1;
@@ -123,20 +171,31 @@ body::after {
   letter-spacing: 1px;
   text-shadow: 0 0 8px var(--neon1);
   box-shadow: 0 0 24px rgba(0,255,200,0.18);
-  animation: pulseBadge 3s ease-in-out infinite;
+  animation: pulseBadge 3s ease-in-out infinite, neonFlicker 6s infinite;
 }
 @keyframes pulseBadge {
   0%,100% { box-shadow: 0 0 24px rgba(0,255,200,0.18); }
   50% { box-shadow: 0 0 40px rgba(0,255,200,0.4); }
 }
+@keyframes neonFlicker {
+  0%,18%,22%,25%,53%,57%,100% { opacity:1; }
+  20% { opacity:.4; } 24% { opacity:.7; }
+  55% { opacity:.5; }
+}
 .hero-title {
   margin-top: 18px;
+  font-family: 'Orbitron', sans-serif;
   font-size: clamp(1.9rem, 4.6vw, 3.1rem);
   font-weight: 900;
   line-height: 1.1;
   color: #fff;
-  text-shadow: 2px 2px 0 var(--neon2), -1px -1px 0 var(--neon1);
   letter-spacing: -0.7px;
+  animation: rgbSplit 4s infinite;
+}
+@keyframes rgbSplit {
+  0%,100% { text-shadow: 2px 2px 0 var(--neon2), -1px -1px 0 var(--neon1); }
+  33% { text-shadow: -2px 2px 0 var(--neon2), 1px -1px 0 var(--neon3); }
+  66% { text-shadow: 2px -2px 0 var(--neon3), -1px 1px 0 var(--neon1); }
 }
 .accent { color: var(--neon1); }
 .hero-desc {
@@ -174,7 +233,7 @@ body::after {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 16px;
-  box-shadow: var(--shadow), inset 0 0 60px rgba(0,255,200,0.03);
+  box-shadow: 0 0 30px rgba(0,255,200,0.06), inset 0 0 60px rgba(0,255,200,0.03);
   backdrop-filter: blur(10px);
 }
 .terminal-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
@@ -183,13 +242,14 @@ body::after {
 .dot-row span.live { background: var(--neon1); box-shadow: 0 0 8px var(--neon1); animation: blink 1.5s infinite; }
 @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
 .chip { padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: #ccc; font-size: 0.78rem; font-weight: 600; }
-.terminal-lines { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.82rem; color: var(--neon1); line-height: 1.6; }
+.terminal-lines { font-family: 'Share Tech Mono', monospace; font-size: 0.82rem; color: var(--neon1); line-height: 1.6; }
 .terminal-lines .line { margin-bottom: 4px; }
 .terminal-lines .time { color: #444; }
 .terminal-lines .ok { color: var(--neon1); }
 .terminal-lines .warn { color: var(--neon4); }
 .terminal-lines .err { color: var(--neon2); }
 
+/* ===== Sections ===== */
 .section { padding: 60px 0; position: relative; z-index: 1; }
 .section-badge {
   display: inline-block;
@@ -203,16 +263,20 @@ body::after {
   letter-spacing: 1px;
   text-transform: uppercase;
   box-shadow: 0 0 18px rgba(0,255,200,0.12);
+  animation: neonFlicker 7s infinite;
 }
 .section-title {
   margin-top: 16px;
+  font-family: 'Orbitron', sans-serif;
   font-size: clamp(1.4rem, 3.4vw, 1.9rem);
   font-weight: 900;
   color: #fff;
   letter-spacing: -0.4px;
+  text-shadow: 0 0 14px rgba(0,255,200,0.25);
 }
 .section-desc { margin-top: 10px; color: var(--muted); font-size: 0.96rem; max-width: 640px; }
 
+/* ===== Skills ===== */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -238,58 +302,53 @@ body::after {
   transition: left .55s;
 }
 .skill-card:hover::before { left: 100%; }
-.skill-card:hover { transform: translateY(-4px); border-color: rgba(0,255,200,0.4); box-shadow: 0 0 30px rgba(0,255,200,0.15); }
-.skill-card h3 { color: #fff; font-size: 1.05rem; margin-bottom: 8px; }
-.skill-card p { color: #b8bcc4; font-size: 0.9rem; }
-.skill-card .meta { color: var(--muted); font-size: 0.78rem; margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
-.mini-pill { padding: 5px 9px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: #c9ccd4; font-size: 0.72rem; }
-
-.showcase-tabs { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 22px 0 18px; }
-.tab {
-  padding: 12px 20px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: #c9ccd4;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all .3s;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-.tab.active { background: linear-gradient(135deg, rgba(0,255,200,0.15), rgba(0,168,255,0.15)); color: #fff; border-color: rgba(0,255,200,0.5); box-shadow: 0 0 20px rgba(0,255,200,0.2); }
-.tab:hover { border-color: rgba(0,255,200,0.4); color: #fff; }
-.showcase-panel { display: none; animation: fade .35s ease; }
-.showcase-panel.active { display: block; }
-@keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px; }
-.project-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 18px;
-  position: relative;
-  overflow: hidden;
-  transition: all .3s;
-}
-.project-card::before {
+/* rotating conic border on hover */
+.skill-card::after {
   content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--neon1), transparent);
-  transition: left .55s;
+  position: absolute; inset: 0;
+  border-radius: var(--radius);
+  padding: 1px;
+  background: conic-gradient(from 0deg, transparent 0%, var(--neon1) 15%, transparent 35%, transparent 60%, var(--neon3) 80%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity .35s;
+  animation: spin 4s linear infinite;
+  pointer-events: none;
 }
-.project-card:hover::before { left: 100%; }
-.project-card:hover { border-color: rgba(0,255,200,0.35); transform: translateY(-3px); }
-.project-card h4 { color: #fff; font-size: 1.05rem; margin-bottom: 6px; }
-.project-card p { color: #b8bcc4; font-size: 0.9rem; }
-.project-card .use { margin-top: 8px; color: #a6aab4; font-size: 0.82rem; font-style: italic; }
-.tech { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
-.tech-tag { padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border); font-size: 0.75rem; color: #c9ccd4; background: var(--surface-2); }
+.skill-card:hover::after { opacity: 1; }
+@keyframes spin { to { transform: rotate(360deg); } }
 
+.skill-card:hover { transform: translateY(-4px); border-color: rgba(0,255,200,0.4); box-shadow: 0 0 30px rgba(0,255,200,0.15); }
+.skill-card h3 { color: #fff; font-size: 1.05rem; margin-bottom: 8px; letter-spacing: .3px; }
+.skill-card p { color: #b8bcc4; font-size: 0.9rem; }
+
+/* moving ticker inside each skill card */
+.skill-marquee {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+  -webkit-mask: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+          mask: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.skill-marquee .track {
+  display: inline-flex;
+  gap: 18px;
+  white-space: nowrap;
+  animation: marquee 11s linear infinite;
+}
+.skill-marquee .track span {
+  font-size: 0.74rem;
+  color: var(--neon1);
+  text-shadow: 0 0 6px rgba(0,255,200,0.45);
+  letter-spacing: 1px;
+}
+.skill-marquee .track span::before { content: '› '; color: var(--neon2); }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ===== Price ===== */
 .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 18px; }
 .price-card {
   background: var(--surface);
@@ -302,6 +361,7 @@ body::after {
 .price-card .n { color: #b8bcc4; font-size: 0.9rem; margin-bottom: 4px; }
 .price-card .p { color: var(--neon1); font-weight: 900; font-size: 1.05rem; text-shadow: 0 0 8px rgba(0,255,200,0.35); }
 
+/* ===== Contact ===== */
 .contact-wrap { margin-top: 18px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 .contact-icon {
   display: inline-flex;
@@ -316,10 +376,28 @@ body::after {
 .contact-icon:hover { transform: translateY(-3px); border-color: rgba(0,255,200,0.4); box-shadow: 0 0 24px rgba(0,255,200,0.15); }
 .contact-icon svg { display: block; }
 
-footer { border-top: 1px solid var(--border); padding: 16px 0; color: #5a5f68; font-size: 0.8rem; text-align: center; position: relative; z-index: 1; }
+/* ===== Global status ticker (above footer) ===== */
+.status-ticker {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(0,255,200,0.03);
+  overflow: hidden;
+  padding: 10px 0;
+  margin-top: 20px;
+  -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.status-ticker .track {
+  display: inline-flex; gap: 40px; white-space: nowrap;
+  font-size: 0.8rem; color: var(--neon1); letter-spacing: 1px;
+  animation: marquee 22s linear infinite;
+}
+.status-ticker .track span { text-shadow: 0 0 6px rgba(0,255,200,0.4); }
+.status-ticker .track span b { color: var(--neon2); }
 
-.reveal { opacity: 0; transform: translateY(14px); transition: all .6s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+footer { border-top: 1px solid var(--border); padding: 16px 0; color: #5a5f68; font-size: 0.8rem; text-align: center; position: relative; z-index: 1; }
 
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; padding-top: 110px; }
@@ -335,12 +413,12 @@ footer { border-top: 1px solid var(--border); padding: 16px 0; color: #5a5f68; f
 <body>
 
 <div class="topbar" id="topbar">
-  <a href="#beranda" class="brand"><span class="logo">C</span> CILOK TECH</a>
+  <a href="#beranda" class="brand"><span class="logo">C</span> <span class="brand-name glitch" data-text="CILOK TECH">CILOK TECH</span></a>
   <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
   <nav class="topnav" id="topNav">
     <a href="#layanan">Layanan</a>
-    <a href="#showcase">Showcase</a>
     <a href="#harga">Harga</a>
+    <a href="#kontak">Kontak</a>
   </nav>
 </div>
 
@@ -388,89 +466,21 @@ footer { border-top: 1px solid var(--border); padding: 16px 0; color: #5a5f68; f
       <p class="section-desc">Pilih sesuai kebutuhan, gue urus implementasi sampai jalan.</p>
     </div>
     <div class="skills-grid">
-      <div class="skill-card"><h3>🌐 Website / Web App</h3><p>Landing page, company profile, admin panel, dashboard. HTML/React/Next.js + Node/Python.</p><div class="meta"><span class="mini-pill">Statis</span><span class="mini-pill">Dinamis</span><span class="mini-pill">Deploy VPS</span></div></div>
-      <div class="skill-card"><h3>🤖 Telegram Bot</h3><p>Notifikasi, auto-claim, scanner, voting, automation 24/7.</p><div class="meta"><span class="mini-pill">Python</span><span class="mini-pill">Node.js</span></div></div>
-      <div class="skill-card"><h3>📊 Dashboard</h3><p>Real-time monitoring server/provider/log dengan auto-refresh.</p><div class="meta"><span class="mini-pill">Realtime</span><span class="mini-pill">Alerts</span></div></div>
-      <div class="skill-card"><h3>🕷 Scraping & Report</h3><p>Ambil data dari web/API, olah jadi report atau file siap pakai.</p><div class="meta"><span class="mini-pill">Tracking</span><span class="mini-pill">Automation</span></div></div>
-      <div class="skill-card"><h3>⚡ Automation</h3><p>Bot massal, batch processing, cron pipelines.</p><div class="meta"><span class="mini-pill">Cron</span><span class="mini-pill">Playwright</span></div></div>
-      <div class="skill-card"><h3>🧠 AI / Workflow</h3><p>Agent AI, RAG, workflow LLM, retrieval.</p><div class="meta"><span class="mini-pill">Private-first</span><span class="mini-pill">RAG</span></div></div>
-      <div class="skill-card"><h3>⛓ Crypto Tools</h3><p>Wallet generation, DeFi, token scanner, airdrop tools.</p><div class="meta"><span class="mini-pill">Multi-chain</span><span class="mini-pill">Secure</span></div></div>
-      <div class="skill-card"><h3>🧩 Browser Automation</h3><p>Playwright, undetected headless, session automation, OAuth helpers.</p><div class="meta"><span class="mini-pill">Desktop</span><span class="mini-pill">Headless</span></div></div>
-      <div class="skill-card"><h3>🔧 DevOps</h3><p>VPS setup, nginx, systemd, CI/CD, migration kits.</p><div class="meta"><span class="mini-pill">Linux</span><span class="mini-pill">Docker</span></div></div>
-      <div class="skill-card"><h3>📦 Deploy & Hosting</h3><p>GitHub Pages, Vercel, Netlify, manual VPS.</p><div class="meta"><span class="mini-pill">Pages</span><span class="mini-pill">Vercel</span></div></div>
-      <div class="skill-card"><h3>🗄 Database & Data</h3><p>SQLite, PostgreSQL, JSON stores, migration.</p><div class="meta"><span class="mini-pill">Backup</span><span class="mini-pill">Schema</span></div></div>
-      <div class="skill-card"><h3>📱 Mobile / Responsive</h3><p>Mobile-first layout, PWA-ready, touch-friendly UI.</p><div class="meta"><span class="mini-pill">Cross-device</span></div></div>
-      <div class="skill-card"><h3>🎨 UI/UX Design</h3><p>Dark theme, cyberpunk, glassmorphism, design systems.</p><div class="meta"><span class="mini-pill">Aesthetic</span><span class="mini-pill">Design</span></div></div>
-      <div class="skill-card"><h3>🔌 API Integration</h3><p>REST/GraphQL, webhooks, OAuth, third-party toolchain.</p><div class="meta"><span class="mini-pill">REST</span><span class="mini-pill">OAuth</span></div></div>
-      <div class="skill-card"><h3>🔄 System Migration</h3><p>Migrasi repo, konfigurasi, data antar VPS/host.</p><div class="meta"><span class="mini-pill">Minimal downtime</span></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="showcase" style="background:linear-gradient(180deg, transparent, rgba(0,255,200,0.04), transparent);">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-badge">// Showcase</span>
-      <h2 class="section-title">Contoh Kemampuan</h2>
-      <p class="section-desc">Kategori dan use-case yang bisa gue kerjakan.</p>
-    </div>
-    <div class="showcase-tabs">
-      <button class="tab active" data-tab="tab-all">SEMUA</button>
-      <button class="tab" data-tab="tab-web">WEB</button>
-      <button class="tab" data-tab="tab-bot">BOT</button>
-      <button class="tab" data-tab="tab-data">DATA</button>
-      <button class="tab" data-tab="tab-ai">AI</button>
-      <button class="tab" data-tab="tab-crypto">CRYPTO</button>
-      <button class="tab" data-tab="tab-infra">INFRA</button>
-    </div>
-
-    <div id="tab-all" class="showcase-panel active">
-      <div class="project-grid">
-        <div class="project-card"><h4>Website / Landing</h4><p>Branding site responsif.</p><div class="use">Use-case: personal, brand, UMKM, SaaS.</div><div class="tech"><span class="tech-tag">HTML</span><span class="tech-tag">React</span><span class="tech-tag">Next.js</span></div></div>
-        <div class="project-card"><h4>Telegram Bot</h4><p>Alert, automation, scanner.</p><div class="use">Use-case: support, tracking.</div><div class="tech"><span class="tech-tag">Python</span><span class="tech-tag">Node.js</span></div></div>
-        <div class="project-card"><h4>Dashboard Monitoring</h4><p>Control center realtime VPS/server.</p><div class="use">Use-case: server health, metrics, logs.</div><div class="tech"><span class="tech-tag">Dashboard</span><span class="tech-tag">Live API</span></div></div>
-        <div class="project-card"><h4>Scraping & Report</h4><p>Ambil data dan olah report.</p><div class="use">Use-case: price tracking, watch.</div><div class="tech"><span class="tech-tag">Scraping</span><span class="tech-tag">API</span></div></div>
-        <div class="project-card"><h4>Automation</h4><p>Bot massal, batch job, cron pipeline.</p><div class="use">Use-case: scheduler, workflows.</div><div class="tech"><span class="tech-tag">Cron</span><span class="tech-tag">Playwright</span></div></div>
-        <div class="project-card"><h4>AI / Workflow</h4><p>Agent, RAG, workflow LLM.</p><div class="use">Use-case: assistant, summarizer.</div><div class="tech"><span class="tech-tag">AI</span><span class="tech-tag">LLM</span></div></div>
-        <div class="project-card"><h4>Crypto Tools</h4><p>Wallet, scanner, DeFi helper.</p><div class="use">Use-case: airdrop, monitoring.</div><div class="tech"><span class="tech-tag">Crypto</span><span class="tech-tag">Web3</span></div></div>
-        <div class="project-card"><h4>Browser Automation</h4><p>Headless browser, session handling.</p><div class="use">Use-case: login automation, QA.</div><div class="tech"><span class="tech-tag">Playwright</span><span class="tech-tag">Automation</span></div></div>
-        <div class="project-card"><h4>Deploy & Hosting</h4><p>Publish site ke Pages, Vercel, atau VPS.</p><div class="use">Use-case: fast go-live.</div><div class="tech"><span class="tech-tag">CI/CD</span><span class="tech-tag">Hosting</span></div></div>
-        <div class="project-card"><h4>Security Research</h4><p>Auth analysis, recon, enumeration pada scope authorized.</p><div class="use">Use-case: penetration test scoped.</div><div class="tech"><span class="tech-tag">Recon</span><span class="tech-tag">Auth</span></div></div>
-      </div>
-    </div>
-
-    <div id="tab-web" class="showcase-panel">
-      <div class="project-grid">
-        <div class="project-card"><h4>Website / Landing</h4><p>Branding site responsif.</p><div class="use">Use-case: brand, produk.</div><div class="tech"><span class="tech-tag">HTML</span><span class="tech-tag">React</span></div></div>
-        <div class="project-card"><h4>Admin Panel</h4><p>Manajemen data + operasi.</p><div class="use">Use-case: internal, analytics.</div><div class="tech"><span class="tech-tag">Next.js</span><span class="tech-tag">Node</span></div></div>
-      </div>
-    </div>
-    <div id="tab-bot" class="showcase-panel">
-      <div class="project-grid">
-        <div class="project-card"><h4>Telegram Bot</h4><p>Alert, automation, scanner.</p><div class="use">Use-case: support, tracking.</div><div class="tech"><span class="tech-tag">Python</span><span class="tech-tag">Telegram</span></div></div>
-        <div class="project-card"><h4>Bot Massal</h4><p>Batch job + scheduler.</p><div class="use">Use-case: cron, bulk action.</div><div class="tech"><span class="tech-tag">Automation</span></div></div>
-      </div>
-    </div>
-    <div id="tab-data" class="showcase-panel">
-      <div class="project-grid">
-        <div class="project-card"><h4>Scraping & Report</h4><p>Ambil data dan olah report.</p><div class="use">Use-case: tracking, watch.</div><div class="tech"><span class="tech-tag">Scraping</span><span class="tech-tag">API</span></div></div>
-      </div>
-    </div>
-    <div id="tab-ai" class="showcase-panel">
-      <div class="project-grid">
-        <div class="project-card"><h4>AI Agent / Workflow</h4><p>Agent, RAG, workflow.</p><div class="use">Use-case: assistant, summarizer.</div><div class="tech"><span class="tech-tag">AI</span><span class="tech-tag">LLM</span></div></div>
-      </div>
-    </div>
-    <div id="tab-crypto" class="showcase-panel">
-      <div class="project-grid">
-        <div class="project-card"><h4>Crypto Tools</h4><p>Wallet, scanner, DeFi helper.</p><div class="use">Use-case: airdrop, monitoring.</div><div class="tech"><span class="tech-tag">Crypto</span><span class="tech-tag">Web3</span></div></div>
-      </div>
-    </div>
-    <div id="tab-infra" class="showcase-panel">
-      <div class="project-grid">
-        <div class="project-card"><h4>Deploy & Hosting</h4><p>Publish site fast.</p><div class="use">Use-case: fast go-live.</div><div class="tech"><span class="tech-tag">CI/CD</span></div></div>
-        <div class="project-card"><h4>Security Research</h4><p>Authorized pentest + recon.</p><div class="use">Use-case: scoped engagement.</div><div class="tech"><span class="tech-tag">Recon</span></div></div>
-      </div>
+      <div class="skill-card"><h3>🌐 Website / Web App</h3><p>Landing page, company profile, admin panel, dashboard. HTML/React/Next.js + Node/Python.</p><div class="skill-marquee"><div class="track"><span>WEB APP</span><span>STATIS</span><span>DINAMIS</span><span>DEPLOY VPS</span><span>RESPONSIVE</span><span>SSR</span><span>WEB APP</span><span>STATIS</span><span>DINAMIS</span><span>DEPLOY VPS</span><span>RESPONSIVE</span><span>SSR</span></div></div></div>
+      <div class="skill-card"><h3>🤖 Telegram Bot</h3><p>Notifikasi, auto-claim, scanner, voting, automation 24/7.</p><div class="skill-marquee"><div class="track"><span>BOT</span><span>PYTHON</span><span>NODE.JS</span><span>24/7</span><span>ALERT</span><span>AUTO-CLAIM</span><span>BOT</span><span>PYTHON</span><span>NODE.JS</span><span>24/7</span><span>ALERT</span><span>AUTO-CLAIM</span></div></div></div>
+      <div class="skill-card"><h3>📊 Dashboard</h3><p>Real-time monitoring server/provider/log dengan auto-refresh.</p><div class="skill-marquee"><div class="track"><span>REALTIME</span><span>CHARTS</span><span>ALERTS</span><span>LOGS</span><span>METRICS</span><span>LIVE API</span><span>REALTIME</span><span>CHARTS</span><span>ALERTS</span><span>LOGS</span><span>METRICS</span><span>LIVE API</span></div></div></div>
+      <div class="skill-card"><h3>🕷 Scraping & Report</h3><p>Ambil data dari web/API, olah jadi report atau file siap pakai.</p><div class="skill-marquee"><div class="track"><span>TRACKING</span><span>API</span><span>PARSE</span><span>EXPORT</span><span>WATCH</span><span>SCRAPE</span><span>TRACKING</span><span>API</span><span>PARSE</span><span>EXPORT</span><span>WATCH</span><span>SCRAPE</span></div></div></div>
+      <div class="skill-card"><h3>⚡ Automation</h3><p>Bot massal, batch processing, cron pipelines.</p><div class="skill-marquee"><div class="track"><span>CRON</span><span>BATCH</span><span>PLAYWRIGHT</span><span>PIPELINE</span><span>MASS</span><span>SCHEDULER</span><span>CRON</span><span>BATCH</span><span>PLAYWRIGHT</span><span>PIPELINE</span><span>MASS</span><span>SCHEDULER</span></div></div></div>
+      <div class="skill-card"><h3>🧠 AI / Workflow</h3><p>Agent AI, RAG, workflow LLM, retrieval.</p><div class="skill-marquee"><div class="track"><span>RAG</span><span>AGENT</span><span>LLM</span><span>SUMMARIZER</span><span>RETRIEVAL</span><span>PRIVATE</span><span>RAG</span><span>AGENT</span><span>LLM</span><span>SUMMARIZER</span><span>RETRIEVAL</span><span>PRIVATE</span></div></div></div>
+      <div class="skill-card"><h3>⛓ Crypto Tools</h3><p>Wallet generation, DeFi, token scanner, airdrop tools.</p><div class="skill-marquee"><div class="track"><span>MULTI-CHAIN</span><span>DEFI</span><span>SCANNER</span><span>AIRDROP</span><span>WALLET</span><span>WEB3</span><span>MULTI-CHAIN</span><span>DEFI</span><span>SCANNER</span><span>AIRDROP</span><span>WALLET</span><span>WEB3</span></div></div></div>
+      <div class="skill-card"><h3>🧩 Browser Automation</h3><p>Playwright, undetected headless, session automation, OAuth helpers.</p><div class="skill-marquee"><div class="track"><span>HEADLESS</span><span>DESKTOP</span><span>OAUTH</span><span>SESSION</span><span>QA</span><span>UNDETECTED</span><span>HEADLESS</span><span>DESKTOP</span><span>OAUTH</span><span>SESSION</span><span>QA</span><span>UNDETECTED</span></div></div></div>
+      <div class="skill-card"><h3>🔧 DevOps</h3><p>VPS setup, nginx, systemd, CI/CD, migration kits.</p><div class="skill-marquee"><div class="track"><span>LINUX</span><span>DOCKER</span><span>NGINX</span><span>SYSTEMD</span><span>CI/CD</span><span>VPS</span><span>LINUX</span><span>DOCKER</span><span>NGINX</span><span>SYSTEMD</span><span>CI/CD</span><span>VPS</span></div></div></div>
+      <div class="skill-card"><h3>📦 Deploy & Hosting</h3><p>GitHub Pages, Vercel, Netlify, manual VPS.</p><div class="skill-marquee"><div class="track"><span>PAGES</span><span>VERCEL</span><span>NETLIFY</span><span>VPS</span><span>AUTO</span><span>CI/CD</span><span>PAGES</span><span>VERCEL</span><span>NETLIFY</span><span>VPS</span><span>AUTO</span><span>CI/CD</span></div></div></div>
+      <div class="skill-card"><h3>🗄 Database & Data</h3><p>SQLite, PostgreSQL, JSON stores, migration.</p><div class="skill-marquee"><div class="track"><span>SQLITE</span><span>POSTGRES</span><span>BACKUP</span><span>SCHEMA</span><span>JSON</span><span>MIGRATION</span><span>SQLITE</span><span>POSTGRES</span><span>BACKUP</span><span>SCHEMA</span><span>JSON</span><span>MIGRATION</span></div></div></div>
+      <div class="skill-card"><h3>📱 Mobile / Responsive</h3><p>Mobile-first layout, PWA-ready, touch-friendly UI.</p><div class="skill-marquee"><div class="track"><span>MOBILE-FIRST</span><span>TOUCH</span><span>PWA</span><span>CROSS-DEVICE</span><span>FAST</span><span>RESPONSIVE</span><span>MOBILE-FIRST</span><span>TOUCH</span><span>PWA</span><span>CROSS-DEVICE</span><span>FAST</span><span>RESPONSIVE</span></div></div></div>
+      <div class="skill-card"><h3>🎨 UI/UX Design</h3><p>Dark theme, cyberpunk, glassmorphism, design systems.</p><div class="skill-marquee"><div class="track"><span>DARK</span><span>CYBERPUNK</span><span>GLASS</span><span>NEON</span><span>AESTHETIC</span><span>DESIGN</span><span>DARK</span><span>CYBERPUNK</span><span>GLASS</span><span>NEON</span><span>AESTHETIC</span><span>DESIGN</span></div></div></div>
+      <div class="skill-card"><h3>🔌 API Integration</h3><p>REST/GraphQL, webhooks, OAuth, third-party toolchain.</p><div class="skill-marquee"><div class="track"><span>REST</span><span>GRAPHQL</span><span>WEBHOOK</span><span>OAUTH</span><span>3RD-PARTY</span><span>INTEGRATION</span><span>REST</span><span>GRAPHQL</span><span>WEBHOOK</span><span>OAUTH</span><span>3RD-PARTY</span><span>INTEGRATION</span></div></div></div>
+      <div class="skill-card"><h3>🔄 System Migration</h3><p>Migrasi repo, konfigurasi, data antar VPS/host.</p><div class="skill-marquee"><div class="track"><span>REPO</span><span>CONFIG</span><span>DATA</span><span>ZERO-LOSS</span><span>FAST</span><span>MINIMAL DOWNTIME</span><span>REPO</span><span>CONFIG</span><span>DATA</span><span>ZERO-LOSS</span><span>FAST</span><span>MINIMAL DOWNTIME</span></div></div></div>
     </div>
   </div>
 </section>
@@ -511,6 +521,13 @@ footer { border-top: 1px solid var(--border); padding: 16px 0; color: #5a5f68; f
   </div>
 </section>
 
+<div class="status-ticker">
+  <div class="track">
+    <span>SYSTEM <b>ONLINE</b></span><span>STATUS: <b>AVAILABLE</b></span><span>UPTIME 99.9%</span><span>TELEGRAM ALERTS <b>ACTIVE</b></span><span>MONITORING <b>LIVE</b></span><span>NEW OPS <b>OPEN</b></span><span>DEPLOY PIPELINE <b>READY</b></span>
+    <span>SYSTEM <b>ONLINE</b></span><span>STATUS: <b>AVAILABLE</b></span><span>UPTIME 99.9%</span><span>TELEGRAM ALERTS <b>ACTIVE</b></span><span>MONITORING <b>LIVE</b></span><span>NEW OPS <b>OPEN</b></span><span>DEPLOY PIPELINE <b>READY</b></span>
+  </div>
+</div>
+
 <footer>
   <div class="container">© CILOK TECH — Digital Operator</div>
 </footer>
@@ -520,21 +537,6 @@ const navToggle = document.getElementById('navToggle');
 const topNav = document.getElementById('topNav');
 navToggle?.addEventListener('click', () => topNav.classList.toggle('open'));
 document.querySelectorAll('#topNav a').forEach(a => a.addEventListener('click', () => topNav.classList.remove('open')));
-
-document.querySelectorAll('.tab').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.showcase-panel').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    const target = document.getElementById(btn.dataset.tab);
-    if (target) target.classList.add('active');
-  });
-});
-
-const revealObs = new IntersectionObserver(entries => {
-  entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); revealObs.unobserve(en.target); } });
-}, { threshold: 0.06 });
-document.querySelectorAll('.reveal').forEach(x => revealObs.observe(x));
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
