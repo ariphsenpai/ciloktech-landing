@@ -188,10 +188,12 @@ body::after {
   position: relative;
   z-index: 1;
   padding: 140px 0 80px;
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 30px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 78vh;
 }
 .hero-badge {
   display: inline-flex;
@@ -237,8 +239,9 @@ body::after {
   color: #c5c8ce;
   font-size: 1.05rem;
   max-width: 540px;
+  margin-left: auto; margin-right: auto;
 }
-.hero-tags { margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap; }
+.hero-tags { margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
 .tag {
   padding: 8px 14px;
   border-radius: 999px;
@@ -251,7 +254,7 @@ body::after {
   transition: all .3s;
 }
 .tag:hover { border-color: rgba(0,255,200,0.4); color: #fff; box-shadow: 0 0 20px rgba(0,255,200,0.15); }
-.hero-cta { margin-top: 22px; display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-cta { margin-top: 22px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
 .pill {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 14px 22px;
@@ -285,18 +288,19 @@ body::after {
 
 /* ===== Flying robot ===== */
 .flying-robot {
-  position: absolute;
-  top: -8px; right: 2%;
+  position: relative;
+  margin: 10px auto 0;
   z-index: 6;
   pointer-events: none;
-  filter: drop-shadow(0 0 14px rgba(0,255,200,0.45));
+  filter: drop-shadow(0 0 18px rgba(0,255,200,0.5));
   animation: robotFly 9s ease-in-out infinite;
 }
+.flying-robot svg { width: 130px; height: 162px; }
 @keyframes robotFly {
   0%   { transform: translate(0,0) rotate(-5deg); }
-  25%  { transform: translate(34px,-28px) rotate(4deg); }
-  50%  { transform: translate(64px,10px) rotate(-3deg); }
-  75%  { transform: translate(22px,32px) rotate(5deg); }
+  25%  { transform: translate(0,-22px) rotate(4deg); }
+  50%  { transform: translate(0,12px) rotate(-3deg); }
+  75%  { transform: translate(0,-10px) rotate(5deg); }
   100% { transform: translate(0,0) rotate(-5deg); }
 }
 .flying-robot .flame { animation: flameFlicker .22s steps(2) infinite; transform-origin: 60px 118px; }
@@ -459,7 +463,6 @@ footer { border-top: 1px solid var(--border); padding: 16px 0; color: #5a5f68; f
 
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; padding-top: 110px; }
-  .flying-robot { display: none; }
   .topnav { display: none; }
   .nav-toggle { display: block; }
   .topnav.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 16px; right: 16px; padding: 12px; background: rgba(10,13,22,0.95); border: 1px solid var(--border); border-radius: 16px; }
@@ -528,20 +531,6 @@ footer { border-top: 1px solid var(--border); padding: 16px 0; color: #5a5f68; f
     </div>
     <div class="hero-cta">
       <a class="pill primary" href="#layanan">Lihat Layanan</a>
-    </div>
-  </div>
-  <div class="terminal-card">
-    <div class="terminal-header">
-      <div class="dot-row"><span></span><span class="live"></span><span></span></div>
-    </div>
-    <div class="terminal-lines">
-      <div class="line"><span class="time">[sys]</span> modules loaded: web, bot, automation, ai, crypto</div>
-      <div class="line"><span class="ok">[ok]</span> Deployment stack ready</div>
-      <div class="line"><span class="ok">[ok]</span> Monitoring online</div>
-      <div class="line"><span class="warn">[warn]</span> Some OAuth flows blocked from VPS</div>
-      <div class="line"><span class="ok">[ok]</span> Telegram alerts active</div>
-      <div class="line"><span class="err">[err]</span> Unauthorized ops: disabled</div>
-      <div class="line"><span class="time">[status]</span> Available for new ops</div>
     </div>
   </div>
 </section>
