@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CILOK TECH // DIGITAL OPERATOR</title>
-<meta name="description" content="Full-spectrum digital operator. Website, bot, dashboard, scraping, automation, AI, crypto.">
+<meta name="description" content="Sistem yang berjalan sendiri. Website, bot, dashboard, scraping, automation, AI, crypto tools — gue urus engineering, kamu terima hasil.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -28,15 +28,29 @@ html { scroll-behavior: smooth; scroll-padding-top: 84px; }
 body {
   font-family: 'Share Tech Mono', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background:
-    radial-gradient(900px 700px at 50% -10%, rgba(0,255,200,0.18), transparent 55%),
-    radial-gradient(700px 600px at 110% 20%, rgba(255,0,170,0.14), transparent 55%),
-    radial-gradient(700px 600px at -10% 70%, rgba(0,168,255,0.13), transparent 55%),
+    radial-gradient(900px 700px at 50% -10%, rgba(0,255,200,0.14), transparent 55%),
+    radial-gradient(700px 600px at 110% 20%, rgba(255,0,170,0.10), transparent 55%),
+    radial-gradient(700px 600px at -10% 70%, rgba(0,168,255,0.10), transparent 55%),
     linear-gradient(180deg, #03050a 0%, #070b16 38%, #03050a 100%);
   background-attachment: fixed;
   color: var(--text);
   line-height: 1.55;
   overflow-x: hidden;
 }
+/* ===== Neon batik background (thin kawung motif) ===== */
+.batik-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.10;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='none' stroke='%2300ffc8' stroke-width='0.8'%3E%3Ccircle cx='70' cy='70' r='26'/%3E%3Cellipse cx='70' cy='44' rx='11' ry='22'/%3E%3Cellipse cx='70' cy='96' rx='11' ry='22'/%3E%3Cellipse cx='44' cy='70' rx='22' ry='11'/%3E%3Cellipse cx='96' cy='70' rx='22' ry='11'/%3E%3Ccircle cx='70' cy='70' r='9'/%3E%3Ccircle cx='0' cy='0' r='26'/%3E%3Cellipse cx='0' cy='-26' rx='11' ry='22'/%3E%3Cellipse cx='0' cy='26' rx='11' ry='22'/%3E%3Cellipse cx='-26' cy='0' rx='22' ry='11'/%3E%3Cellipse cx='26' cy='0' rx='22' ry='11'/%3E%3Ccircle cx='0' cy='0' r='9'/%3E%3Ccircle cx='140' cy='0' r='26'/%3E%3Cellipse cx='140' cy='-26' rx='11' ry='22'/%3E%3Cellipse cx='140' cy='26' rx='11' ry='22'/%3E%3Cellipse cx='114' cy='0' rx='22' ry='11'/%3E%3Cellipse cx='166' cy='0' rx='22' ry='11'/%3E%3Ccircle cx='140' cy='0' r='9'/%3E%3Ccircle cx='0' cy='140' r='26'/%3E%3Cellipse cx='0' cy='114' rx='11' ry='22'/%3E%3Cellipse cx='0' cy='166' rx='11' ry='22'/%3E%3Cellipse cx='-26' cy='140' rx='22' ry='11'/%3E%3Cellipse cx='26' cy='140' rx='22' ry='11'/%3E%3Ccircle cx='0' cy='140' r='9'/%3E%3Ccircle cx='140' cy='140' r='26'/%3E%3Cellipse cx='140' cy='114' rx='11' ry='22'/%3E%3Cellipse cx='140' cy='166' rx='11' ry='22'/%3E%3Cellipse cx='114' cy='140' rx='22' ry='11'/%3E%3Cellipse cx='166' cy='140' rx='22' ry='11'/%3E%3Ccircle cx='140' cy='140' r='9'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 140px 140px;
+  mix-blend-mode: screen;
+  animation: batikDrift 60s linear infinite;
+}
+@keyframes batikDrift { from { background-position: 0 0; } to { background-position: 140px 140px; } }
+
 /* cyberpunk perspective grid floor */
 body::before {
   content: '';
@@ -46,14 +60,14 @@ body::before {
   z-index: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(0,255,200,0.35) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,168,255,0.28) 1px, transparent 1px);
+    linear-gradient(rgba(0,255,200,0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,168,255,0.20) 1px, transparent 1px);
   background-size: 48px 48px;
   transform: perspective(420px) rotateX(70deg);
   transform-origin: bottom center;
   -webkit-mask: linear-gradient(to top, #000 0%, rgba(0,0,0,0.25) 45%, transparent 80%);
           mask: linear-gradient(to top, #000 0%, rgba(0,0,0,0.25) 45%, transparent 80%);
-  opacity: 0.6;
+  opacity: 0.4;
   animation: gridFloor 7s linear infinite;
 }
 @keyframes gridFloor { from { background-position: 0 0; } to { background-position: 0 48px; } }
@@ -65,7 +79,7 @@ body::after {
   z-index: 90;
   pointer-events: none;
   background: repeating-linear-gradient(0deg, rgba(0,0,0,0.22) 0px, rgba(0,0,0,0.22) 1px, transparent 1px, transparent 3px);
-  opacity: 0.4;
+  opacity: 0.35;
   mix-blend-mode: overlay;
   animation: scanFlicker 5s steps(60) infinite;
 }
@@ -73,43 +87,6 @@ body::after {
 a { color: var(--neon3); text-decoration: none; }
 a:hover { color: var(--neon1); text-shadow: 0 0 8px var(--neon1); }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-
-/* CRT scanlines + flicker */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: repeating-linear-gradient(0deg, rgba(0,0,0,0.25) 0px, rgba(0,0,0,0.25) 1px, transparent 1px, transparent 3px);
-  pointer-events: none;
-  z-index: 90;
-  opacity: 0.35;
-  mix-blend-mode: overlay;
-  animation: scanFlicker 5s steps(60) infinite;
-}
-@keyframes scanFlicker { 0%,100% { opacity:.32 } 48% { opacity:.38 } 50% { opacity:.30 } 52% { opacity:.4 } }
-
-/* ===== Holographic noise grain ===== */
-.grain {
-  position: fixed;
-  inset: -50%;
-  width: 200%; height: 200%;
-  pointer-events: none;
-  z-index: 95;
-  opacity: 0.08;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-  animation: grainShift 0.7s steps(6) infinite;
-}
-@keyframes grainShift {
-  0% { transform: translate(0,0); }
-  16% { transform: translate(-6%, 4%); }
-  33% { transform: translate(4%, -6%); }
-  50% { transform: translate(-4%, -4%); }
-  66% { transform: translate(6%, 6%); }
-  83% { transform: translate(-6%, 2%); }
-  100% { transform: translate(0,0); }
-}
 
 /* holographic iridescent text */
 .holo-text {
@@ -206,13 +183,13 @@ body::before {
 .hero {
   position: relative;
   z-index: 1;
-  padding: 140px 0 80px;
+  padding: 150px 0 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  min-height: 78vh;
+  min-height: 82vh;
 }
 .hero-badge {
   display: inline-flex;
@@ -240,40 +217,48 @@ body::before {
 .hero-title {
   margin-top: 18px;
   font-family: 'Orbitron', sans-serif;
-  font-size: clamp(1.9rem, 4.6vw, 3.1rem);
+  font-size: clamp(1.9rem, 4.8vw, 3.2rem);
   font-weight: 900;
-  line-height: 1.1;
+  line-height: 1.12;
   color: #fff;
   letter-spacing: -0.7px;
-  animation: rgbSplit 4s infinite;
-}
-@keyframes rgbSplit {
-  0%,100% { text-shadow: 2px 2px 0 var(--neon2), -1px -1px 0 var(--neon1); }
-  33% { text-shadow: -2px 2px 0 var(--neon2), 1px -1px 0 var(--neon3); }
-  66% { text-shadow: 2px -2px 0 var(--neon3), -1px 1px 0 var(--neon1); }
+  max-width: 900px;
 }
 .accent { color: var(--neon1); }
+
+/* ===== FLIP WORD (3D rotateX cycle) ===== */
+.flip-wrap {
+  display: inline-block;
+  vertical-align: baseline;
+  height: 1.15em;
+  overflow: hidden;
+  perspective: 400px;
+}
+.flip-word {
+  display: inline-block;
+  color: var(--neon1);
+  text-shadow: 0 0 14px rgba(0,255,200,0.6);
+  transform-origin: 50% 50%;
+  animation: flipCycle 3.2s cubic-bezier(.6,.05,.3,1) infinite;
+}
+@keyframes flipCycle {
+  0%   { transform: rotateX(0deg);   opacity: 1; }
+  18%  { transform: rotateX(0deg);   opacity: 1; }
+  28%  { transform: rotateX(90deg);  opacity: 0; }
+  30%  { transform: rotateX(-90deg); opacity: 0; }
+  40%  { transform: rotateX(0deg);   opacity: 1; }
+  88%  { transform: rotateX(0deg);   opacity: 1; }
+  98%  { transform: rotateX(90deg);  opacity: 0; }
+  100% { transform: rotateX(90deg);  opacity: 0; }
+}
 .hero-desc {
-  margin-top: 16px;
+  margin-top: 18px;
   color: #c5c8ce;
   font-size: 1.05rem;
-  max-width: 540px;
+  max-width: 560px;
   margin-left: auto; margin-right: auto;
 }
-.hero-tags { margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-.tag {
-  padding: 8px 14px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: #d0d3db;
-  font-size: 0.82rem;
-  font-weight: 600;
-  box-shadow: 0 0 14px rgba(0,255,200,0.06);
-  transition: all .3s;
-}
-.tag:hover { border-color: rgba(0,255,200,0.4); color: #fff; box-shadow: 0 0 20px rgba(0,255,200,0.15); }
-.hero-cta { margin-top: 22px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.hero-cta { margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
 .pill {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 14px 22px;
@@ -283,49 +268,8 @@ body::before {
 }
 .pill.primary { background: linear-gradient(135deg, var(--neon1), #00d4aa); color: #001914; box-shadow: 0 10px 30px rgba(0,255,200,0.3); }
 .pill.primary:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(0,255,200,0.45); text-decoration: none; }
-
-.terminal-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
-  box-shadow: 0 0 30px rgba(0,255,200,0.06), inset 0 0 60px rgba(0,255,200,0.03);
-  backdrop-filter: blur(10px);
-}
-.terminal-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-.dot-row { display: flex; gap: 6px; }
-.dot-row span { width: 10px; height: 10px; border-radius: 50%; background: #1f2937; }
-.dot-row span.live { background: var(--neon1); box-shadow: 0 0 8px var(--neon1); animation: blink 1.5s infinite; }
-@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
-.chip { padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: #ccc; font-size: 0.78rem; font-weight: 600; }
-.terminal-lines { font-family: 'Share Tech Mono', monospace; font-size: 0.82rem; color: var(--neon1); line-height: 1.6; }
-.terminal-lines .line { margin-bottom: 4px; }
-.terminal-lines .time { color: #444; }
-.terminal-lines .ok { color: var(--neon1); }
-.terminal-lines .warn { color: var(--neon4); }
-.terminal-lines .err { color: var(--neon2); }
-
-/* ===== Flying robot ===== */
-.flying-robot {
-  position: relative;
-  margin: 10px auto 0;
-  z-index: 6;
-  pointer-events: none;
-  filter: drop-shadow(0 0 18px rgba(0,255,200,0.5));
-  animation: robotFly 9s ease-in-out infinite;
-}
-.flying-robot svg { width: 130px; height: 162px; }
-@keyframes robotFly {
-  0%   { transform: translate(0,0) rotate(-5deg); }
-  25%  { transform: translate(0,-22px) rotate(4deg); }
-  50%  { transform: translate(0,12px) rotate(-3deg); }
-  75%  { transform: translate(0,-10px) rotate(5deg); }
-  100% { transform: translate(0,0) rotate(-5deg); }
-}
-.flying-robot .flame { animation: flameFlicker .22s steps(2) infinite; transform-origin: 60px 118px; }
-@keyframes flameFlicker { 0%,100% { opacity:.95; transform: scaleY(1); } 50% { opacity:.45; transform: scaleY(.65); } }
-.flying-robot .eye { animation: eyePulse 2.4s ease-in-out infinite; }
-@keyframes eyePulse { 0%,100% { opacity:1; } 50% { opacity:.55; } }
+.pill.ghost { background: transparent; color: #fff; border: 1px solid var(--border); }
+.pill.ghost:hover { border-color: rgba(0,255,200,0.4); box-shadow: 0 0 20px rgba(0,255,200,0.15); text-decoration: none; }
 
 /* ===== Sections ===== */
 .section { padding: 60px 0; position: relative; z-index: 1; }
@@ -383,7 +327,6 @@ body::before {
   transition: left .55s;
 }
 .skill-card:hover::before { left: 100%; }
-/* rotating conic border on hover */
 .skill-card::after {
   content: '';
   position: absolute; inset: 0;
@@ -405,7 +348,6 @@ body::before {
 .skill-card h3 { color: #fff; font-size: 1.05rem; margin-bottom: 8px; letter-spacing: .3px; }
 .skill-card p { color: #b8bcc4; font-size: 0.9rem; }
 
-/* moving ticker inside each skill card */
 .skill-marquee {
   margin-top: 12px;
   padding-top: 10px;
@@ -457,7 +399,7 @@ body::before {
 .contact-icon:hover { transform: translateY(-3px); border-color: rgba(0,255,200,0.4); box-shadow: 0 0 24px rgba(0,255,200,0.15); }
 .contact-icon svg { display: block; }
 
-/* ===== Global status ticker (above footer) ===== */
+/* ===== Global status ticker ===== */
 .status-ticker {
   position: relative;
   z-index: 1;
@@ -481,7 +423,6 @@ body::before {
 footer { border-top: 1px solid var(--border); padding: 16px 0; color: #5a5f68; font-size: 0.8rem; text-align: center; position: relative; z-index: 1; }
 
 @media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; padding-top: 110px; }
   .topnav { display: none; }
   .nav-toggle { display: block; }
   .topnav.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 16px; right: 16px; padding: 12px; background: rgba(10,13,22,0.95); border: 1px solid var(--border); border-radius: 16px; }
@@ -493,7 +434,7 @@ footer { border-top: 1px solid var(--border); padding: 16px 0; color: #5a5f68; f
 </head>
 <body>
 
-<div class="grain"></div>
+<div class="batik-bg"></div>
 
 <div class="topbar" id="topbar">
   <a href="#beranda" class="brand"><span class="logo">C</span> <span class="brand-name glitch" data-text="CILOK TECH">CILOK TECH</span></a>
@@ -506,47 +447,13 @@ footer { border-top: 1px solid var(--border); padding: 16px 0; color: #5a5f68; f
 </div>
 
 <section class="hero container" id="beranda">
-  <div class="flying-robot" aria-hidden="true">
-    <svg viewBox="0 0 120 150" width="92" height="115">
-      <!-- jetpack thruster flame -->
-      <path class="flame" d="M48 120 q12 30 24 0 q-12 -10 -24 0z" fill="#00ffc8"/>
-      <path class="flame" d="M52 120 q8 20 16 0 q-8 -6 -16 0z" fill="#ffaa00"/>
-      <!-- jetpack nozzles -->
-      <rect x="46" y="112" width="9" height="10" rx="3" fill="#111622" stroke="#00a8ff" stroke-width="1.5"/>
-      <rect x="65" y="112" width="9" height="10" rx="3" fill="#111622" stroke="#00a8ff" stroke-width="1.5"/>
-      <!-- arms -->
-      <rect x="24" y="64" width="11" height="30" rx="5.5" fill="#111622" stroke="#00ffc8" stroke-width="1.5"/>
-      <rect x="85" y="64" width="11" height="30" rx="5.5" fill="#111622" stroke="#00ffc8" stroke-width="1.5"/>
-      <!-- body -->
-      <rect x="37" y="58" width="46" height="54" rx="11" fill="#111622" stroke="#00ffc8" stroke-width="2"/>
-      <rect x="46" y="72" width="28" height="20" rx="5" fill="#0a0d16" stroke="#00a8ff" stroke-width="1.2"/>
-      <circle cx="54" cy="82" r="2.4" fill="#ff00aa"/>
-      <circle cx="66" cy="82" r="2.4" fill="#00ffc8"/>
-      <!-- head -->
-      <rect x="41" y="20" width="38" height="36" rx="9" fill="#0a0d16" stroke="#00a8ff" stroke-width="2"/>
-      <!-- antenna -->
-      <line x1="60" y1="20" x2="60" y2="6" stroke="#ff00aa" stroke-width="2"/>
-      <circle cx="60" cy="4" r="3.2" fill="#ff00aa"/>
-      <!-- eyes -->
-      <circle class="eye" cx="52" cy="38" r="5.2" fill="#00ffc8"/>
-      <circle class="eye" cx="68" cy="38" r="5.2" fill="#00ffc8"/>
-      <!-- mouth -->
-      <rect x="52" y="48" width="16" height="3" rx="1.5" fill="#00a8ff"/>
-    </svg>
-  </div>
   <div>
     <div class="hero-badge">⬢ FULL-SPECTRUM DIGITAL OPERATOR</div>
-    <h1 class="hero-title">Bikin sistem yang <span class="accent">jalan sendiri</span>, tanpa ribet kamu urus</h1>
-    <p class="hero-desc">Website, bot, dashboard, scraping, automation, AI, crypto tools. Gue handle engineering nya — kamu tinggal dapetin hasilnya.</p>
-    <div class="hero-tags">
-      <span class="tag">Web Dev</span>
-      <span class="tag">Telegram Bot</span>
-      <span class="tag">Dashboard</span>
-      <span class="tag">Scraping</span>
-      <span class="tag">Automation</span>
-      <span class="tag">AI Workflow</span>
-      <span class="tag">Crypto Tools</span>
-      <span class="tag">Browser Automation</span>
+    <h1 class="hero-title">Sistem yang <span class="flip-wrap"><span class="flip-word" id="flipWord">otomatis</span></span><br>tanpa kamu yang urus</h1>
+    <p class="hero-desc">Website, bot, dashboard, scraping, automation, AI, crypto tools. Gue handle engineering-nya — kamu tinggal terima hasilnya.</p>
+    <div class="hero-cta">
+      <a href="#layanan" class="pill primary">Lihat Layanan →</a>
+      <a href="#kontak" class="pill ghost">Hubungi Cilok</a>
     </div>
   </div>
 </section>
@@ -567,13 +474,6 @@ footer { border-top: 1px solid var(--border); padding: 16px 0; color: #5a5f68; f
       <div class="skill-card"><h3>🧠 AI / Workflow</h3><p>Agent AI, RAG, workflow LLM, retrieval.</p><div class="skill-marquee"><div class="track"><span>RAG</span><span>AGENT</span><span>LLM</span><span>SUMMARIZER</span><span>RETRIEVAL</span><span>PRIVATE</span><span>RAG</span><span>AGENT</span><span>LLM</span><span>SUMMARIZER</span><span>RETRIEVAL</span><span>PRIVATE</span></div></div></div>
       <div class="skill-card"><h3>⛓ Crypto Tools</h3><p>Wallet generation, DeFi, token scanner, airdrop tools.</p><div class="skill-marquee"><div class="track"><span>MULTI-CHAIN</span><span>DEFI</span><span>SCANNER</span><span>AIRDROP</span><span>WALLET</span><span>WEB3</span><span>MULTI-CHAIN</span><span>DEFI</span><span>SCANNER</span><span>AIRDROP</span><span>WALLET</span><span>WEB3</span></div></div></div>
       <div class="skill-card"><h3>🧩 Browser Automation</h3><p>Playwright, undetected headless, session automation, OAuth helpers.</p><div class="skill-marquee"><div class="track"><span>HEADLESS</span><span>DESKTOP</span><span>OAUTH</span><span>SESSION</span><span>QA</span><span>UNDETECTED</span><span>HEADLESS</span><span>DESKTOP</span><span>OAUTH</span><span>SESSION</span><span>QA</span><span>UNDETECTED</span></div></div></div>
-      <div class="skill-card"><h3>🔧 DevOps</h3><p>VPS setup, nginx, systemd, CI/CD, migration kits.</p><div class="skill-marquee"><div class="track"><span>LINUX</span><span>DOCKER</span><span>NGINX</span><span>SYSTEMD</span><span>CI/CD</span><span>VPS</span><span>LINUX</span><span>DOCKER</span><span>NGINX</span><span>SYSTEMD</span><span>CI/CD</span><span>VPS</span></div></div></div>
-      <div class="skill-card"><h3>📦 Deploy & Hosting</h3><p>GitHub Pages, Vercel, Netlify, manual VPS.</p><div class="skill-marquee"><div class="track"><span>PAGES</span><span>VERCEL</span><span>NETLIFY</span><span>VPS</span><span>AUTO</span><span>CI/CD</span><span>PAGES</span><span>VERCEL</span><span>NETLIFY</span><span>VPS</span><span>AUTO</span><span>CI/CD</span></div></div></div>
-      <div class="skill-card"><h3>🗄 Database & Data</h3><p>SQLite, PostgreSQL, JSON stores, migration.</p><div class="skill-marquee"><div class="track"><span>SQLITE</span><span>POSTGRES</span><span>BACKUP</span><span>SCHEMA</span><span>JSON</span><span>MIGRATION</span><span>SQLITE</span><span>POSTGRES</span><span>BACKUP</span><span>SCHEMA</span><span>JSON</span><span>MIGRATION</span></div></div></div>
-      <div class="skill-card"><h3>📱 Mobile / Responsive</h3><p>Mobile-first layout, PWA-ready, touch-friendly UI.</p><div class="skill-marquee"><div class="track"><span>MOBILE-FIRST</span><span>TOUCH</span><span>PWA</span><span>CROSS-DEVICE</span><span>FAST</span><span>RESPONSIVE</span><span>MOBILE-FIRST</span><span>TOUCH</span><span>PWA</span><span>CROSS-DEVICE</span><span>FAST</span><span>RESPONSIVE</span></div></div></div>
-      <div class="skill-card"><h3>🎨 UI/UX Design</h3><p>Dark theme, cyberpunk, glassmorphism, design systems.</p><div class="skill-marquee"><div class="track"><span>DARK</span><span>CYBERPUNK</span><span>GLASS</span><span>NEON</span><span>AESTHETIC</span><span>DESIGN</span><span>DARK</span><span>CYBERPUNK</span><span>GLASS</span><span>NEON</span><span>AESTHETIC</span><span>DESIGN</span></div></div></div>
-      <div class="skill-card"><h3>🔌 API Integration</h3><p>REST/GraphQL, webhooks, OAuth, third-party toolchain.</p><div class="skill-marquee"><div class="track"><span>REST</span><span>GRAPHQL</span><span>WEBHOOK</span><span>OAUTH</span><span>3RD-PARTY</span><span>INTEGRATION</span><span>REST</span><span>GRAPHQL</span><span>WEBHOOK</span><span>OAUTH</span><span>3RD-PARTY</span><span>INTEGRATION</span></div></div></div>
-      <div class="skill-card"><h3>🔄 System Migration</h3><p>Migrasi repo, konfigurasi, data antar VPS/host.</p><div class="skill-marquee"><div class="track"><span>REPO</span><span>CONFIG</span><span>DATA</span><span>ZERO-LOSS</span><span>FAST</span><span>MINIMAL DOWNTIME</span><span>REPO</span><span>CONFIG</span><span>DATA</span><span>ZERO-LOSS</span><span>FAST</span><span>MINIMAL DOWNTIME</span></div></div></div>
     </div>
   </div>
 </section>
@@ -583,7 +483,7 @@ footer { border-top: 1px solid var(--border); padding: 16px 0; color: #5a5f68; f
     <div class="section-header">
       <span class="section-badge">// Paket</span>
       <h2 class="section-title holo">Harga</h2>
-      <p class="section-desc">Estimasi kasar. Bisanego sesuai scope dan timeline.</p>
+      <p class="section-desc">Estimasi kasar. Bisa nego sesuai scope dan timeline.</p>
     </div>
     <div class="price-grid">
       <div class="price-card"><div class="n">Website statis / landing</div><div class="p">Rp 150rb - 400rb</div></div>
@@ -630,6 +530,20 @@ const navToggle = document.getElementById('navToggle');
 const topNav = document.getElementById('topNav');
 navToggle?.addEventListener('click', () => topNav.classList.toggle('open'));
 document.querySelectorAll('#topNav a').forEach(a => a.addEventListener('click', () => topNav.classList.remove('open')));
+
+/* flip word cycler */
+const flipWords = ['otomatis', 'mandiri', 'tanpa ribet', '24/7', 'sendiri'];
+const flipEl = document.getElementById('flipWord');
+let flipIdx = 0;
+setInterval(() => {
+  flipIdx = (flipIdx + 1) % flipWords.length;
+  // restart animation by reflow
+  flipEl.style.animation = 'none';
+  void flipEl.offsetWidth;
+  flipEl.style.animation = '';
+  flipEl.textContent = flipWords[flipIdx];
+}, 3200);
+
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
