@@ -337,20 +337,16 @@ a:hover { color: var(--neon1); text-shadow: 0 0 8px var(--neon1); }
    (ditambahin JS). Kalau JS gagal, section tetap kelihatan. */
 .js-reveal .reveal {
   opacity: 0;
-  transform: translateX(-60px);
-  transition: opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1), transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translateX(-50px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 .js-reveal .reveal.visible {
   opacity: 1;
   transform: translateX(0);
 }
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
-.reveal-delay-5 { transition-delay: 0.5s; }
-.reveal-delay-6 { transition-delay: 0.6s; }
+/* per-grid stagger via --d (diset JS dari index dlm grid) */
+.js-reveal .reveal { transition-delay: calc(var(--d, 0) * 0.12s); }
 .section-badge {
   display: inline-block;
   padding: 8px 16px;
@@ -697,13 +693,13 @@ body, .skill-card, .project-card, .contact-icon { touch-action: manipulation; }
       <p class="section-desc">Pilih sesuai kebutuhan, gue urus implementasi sampai jalan.</p>
     </div>
     <div class="skills-grid">
-      <div class="skill-card reveal reveal-delay-1"><h3>🌐 Website / Web App</h3><p>Landing page, company profile, admin panel, dashboard. HTML/React/Next.js + Node/Python.</p><div class="skill-marquee"><div class="track"><span>WEB APP</span><span>STATIS</span><span>DINAMIS</span><span>DEPLOY VPS</span><span>RESPONSIVE</span><span>SSR</span><span>WEB APP</span><span>STATIS</span><span>DINAMIS</span><span>DEPLOY VPS</span><span>RESPONSIVE</span><span>SSR</span></div></div></div>
-      <div class="skill-card reveal reveal-delay-2"><h3>🤖 Telegram Bot</h3><p>Notifikasi, auto-claim, scanner, voting, automation 24/7.</p><div class="skill-marquee"><div class="track"><span>BOT</span><span>PYTHON</span><span>NODE.JS</span><span>24/7</span><span>ALERT</span><span>AUTO-CLAIM</span><span>BOT</span><span>PYTHON</span><span>NODE.JS</span><span>24/7</span><span>ALERT</span><span>AUTO-CLAIM</span></div></div></div>
-      <div class="skill-card reveal reveal-delay-3"><h3>📊 Dashboard</h3><p>Real-time monitoring server/provider/log dengan auto-refresh.</p><div class="skill-marquee"><div class="track"><span>REALTIME</span><span>CHARTS</span><span>ALERTS</span><span>LOGS</span><span>METRICS</span><span>LIVE API</span><span>REALTIME</span><span>CHARTS</span><span>ALERTS</span><span>LOGS</span><span>METRICS</span><span>LIVE API</span></div></div></div>
-      <div class="skill-card reveal reveal-delay-4"><h3>🕷 Scraping & Report</h3><p>Ambil data dari web/API, olah jadi report atau file siap pakai.</p><div class="skill-marquee"><div class="track"><span>TRACKING</span><span>API</span><span>PARSE</span><span>EXPORT</span><span>WATCH</span><span>SCRAPE</span><span>TRACKING</span><span>API</span><span>PARSE</span><span>EXPORT</span><span>WATCH</span><span>SCRAPE</span></div></div></div>
-      <div class="skill-card reveal reveal-delay-5"><h3>⚡ Automation</h3><p>Bot massal, batch processing, cron pipelines.</p><div class="skill-marquee"><div class="track"><span>CRON</span><span>BATCH</span><span>PLAYWRIGHT</span><span>PIPELINE</span><span>MASS</span><span>SCHEDULER</span><span>CRON</span><span>BATCH</span><span>PLAYWRIGHT</span><span>PIPELINE</span><span>MASS</span><span>SCHEDULER</span></div></div></div>
-      <div class="skill-card reveal reveal-delay-6"><h3>🧠 AI / Workflow</h3><p>Agent AI, RAG, workflow LLM, retrieval.</p><div class="skill-marquee"><div class="track"><span>RAG</span><span>AGENT</span><span>LLM</span><span>SUMMARIZER</span><span>RETRIEVAL</span><span>PRIVATE</span><span>RAG</span><span>AGENT</span><span>LLM</span><span>SUMMARIZER</span><span>RETRIEVAL</span><span>PRIVATE</span></div></div></div>
-      <div class="skill-card reveal reveal-delay-6"><h3>⛓ Crypto Tools</h3><p>Wallet generation, DeFi, token scanner, airdrop tools.</p><div class="skill-marquee"><div class="track"><span>MULTI-CHAIN</span><span>DEFI</span><span>SCANNER</span><span>AIRDROP</span><span>WALLET</span><span>WEB3</span><span>MULTI-CHAIN</span><span>DEFI</span><span>SCANNER</span><span>AIRDROP</span><span>WALLET</span><span>WEB3</span></div></div></div>
+      <div class="skill-card reveal"><h3>🌐 Website / Web App</h3><p>Landing page, company profile, admin panel, dashboard. HTML/React/Next.js + Node/Python.</p><div class="skill-marquee"><div class="track"><span>WEB APP</span><span>STATIS</span><span>DINAMIS</span><span>DEPLOY VPS</span><span>RESPONSIVE</span><span>SSR</span><span>WEB APP</span><span>STATIS</span><span>DINAMIS</span><span>DEPLOY VPS</span><span>RESPONSIVE</span><span>SSR</span></div></div></div>
+      <div class="skill-card reveal"><h3>🤖 Telegram Bot</h3><p>Notifikasi, auto-claim, scanner, voting, automation 24/7.</p><div class="skill-marquee"><div class="track"><span>BOT</span><span>PYTHON</span><span>NODE.JS</span><span>24/7</span><span>ALERT</span><span>AUTO-CLAIM</span><span>BOT</span><span>PYTHON</span><span>NODE.JS</span><span>24/7</span><span>ALERT</span><span>AUTO-CLAIM</span></div></div></div>
+      <div class="skill-card reveal"><h3>📊 Dashboard</h3><p>Real-time monitoring server/provider/log dengan auto-refresh.</p><div class="skill-marquee"><div class="track"><span>REALTIME</span><span>CHARTS</span><span>ALERTS</span><span>LOGS</span><span>METRICS</span><span>LIVE API</span><span>REALTIME</span><span>CHARTS</span><span>ALERTS</span><span>LOGS</span><span>METRICS</span><span>LIVE API</span></div></div></div>
+      <div class="skill-card reveal"><h3>🕷 Scraping & Report</h3><p>Ambil data dari web/API, olah jadi report atau file siap pakai.</p><div class="skill-marquee"><div class="track"><span>TRACKING</span><span>API</span><span>PARSE</span><span>EXPORT</span><span>WATCH</span><span>SCRAPE</span><span>TRACKING</span><span>API</span><span>PARSE</span><span>EXPORT</span><span>WATCH</span><span>SCRAPE</span></div></div></div>
+      <div class="skill-card reveal"><h3>⚡ Automation</h3><p>Bot massal, batch processing, cron pipelines.</p><div class="skill-marquee"><div class="track"><span>CRON</span><span>BATCH</span><span>PLAYWRIGHT</span><span>PIPELINE</span><span>MASS</span><span>SCHEDULER</span><span>CRON</span><span>BATCH</span><span>PLAYWRIGHT</span><span>PIPELINE</span><span>MASS</span><span>SCHEDULER</span></div></div></div>
+      <div class="skill-card reveal"><h3>🧠 AI / Workflow</h3><p>Agent AI, RAG, workflow LLM, retrieval.</p><div class="skill-marquee"><div class="track"><span>RAG</span><span>AGENT</span><span>LLM</span><span>SUMMARIZER</span><span>RETRIEVAL</span><span>PRIVATE</span><span>RAG</span><span>AGENT</span><span>LLM</span><span>SUMMARIZER</span><span>RETRIEVAL</span><span>PRIVATE</span></div></div></div>
+      <div class="skill-card reveal"><h3>⛓ Crypto Tools</h3><p>Wallet generation, DeFi, token scanner, airdrop tools.</p><div class="skill-marquee"><div class="track"><span>MULTI-CHAIN</span><span>DEFI</span><span>SCANNER</span><span>AIRDROP</span><span>WALLET</span><span>WEB3</span><span>MULTI-CHAIN</span><span>DEFI</span><span>SCANNER</span><span>AIRDROP</span><span>WALLET</span><span>WEB3</span></div></div></div>
       <div class="skill-card"><h3>🧩 Browser Automation</h3><p>Playwright, undetected headless, session automation, OAuth helpers.</p><div class="skill-marquee"><div class="track"><span>HEADLESS</span><span>DESKTOP</span><span>OAUTH</span><span>SESSION</span><span>QA</span><span>UNDETECTED</span><span>HEADLESS</span><span>DESKTOP</span><span>OAUTH</span><span>SESSION</span><span>QA</span><span>UNDETECTED</span></div></div></div>
     </div>
   </div>
@@ -827,28 +823,40 @@ setInterval(() => {
 })();
 
 
-/* scroll reveal — elements appear from left when scrolled into view */
+/* scroll reveal — per-grid stagger + replay saat scroll balik */
 (function(){
   var reveals = document.querySelectorAll('.reveal');
   if (!reveals.length) return;
-  // aktifkan progressive enhancement
   document.body.classList.add('js-reveal');
+
+  // set per-grid stagger: tiap child dlm grid dapet --d dari urutannya
+  var groups = ['.skills-grid', '.price-grid', '.contact-wrap', '.section-header'];
+  groups.forEach(function(sel){
+    var grids = document.querySelectorAll(sel);
+    grids.forEach(function(grid){
+      var kids = grid.querySelectorAll('.reveal');
+      kids.forEach(function(k, i){ k.style.setProperty('--d', i % 6); });
+    });
+  });
+  // section-header sendiri juga stagger (badge->title->desc)
+  document.querySelectorAll('.section-header.reveal').forEach(function(h, i){
+    h.style.setProperty('--d', i % 6);
+  });
+
   if ('IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function(entries){
+    var io = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+        } else {
+          // reset biar efek muncul lg pas scroll balik
+          entry.target.classList.remove('visible');
         }
       });
-    }, { threshold: 0.05, rootMargin: '0px 0px -10px 0px' });
-    reveals.forEach(function(el) { observer.observe(el); });
-    // FALLBACK: paksa semua kelihatan setelah 3 detik (antisipasi observer gagal)
-    setTimeout(function(){
-      reveals.forEach(function(el){ el.classList.add('visible'); });
-    }, 3000);
+    }, { threshold: 0.12, rootMargin: '0px 0px -12% 0px' });
+    reveals.forEach(function(el){ io.observe(el); });
   } else {
-    reveals.forEach(function(el) { el.classList.add('visible'); });
+    reveals.forEach(function(el){ el.classList.add('visible'); });
   }
 })();
 
