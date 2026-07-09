@@ -336,7 +336,7 @@ a:hover { color: var(--neon1); text-shadow: 0 0 8px var(--neon1); }
 .reveal {
   opacity: 0;
   transform: translateX(-60px);
-  transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1), transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
   will-change: opacity, transform;
 }
 .reveal.visible {
@@ -696,12 +696,12 @@ footer { border-top: 1px solid var(--border); padding: 16px 0; color: #5a5f68; f
       <p class="section-desc">Estimasi kasar. Bisa nego sesuai scope dan timeline.</p>
     </div>
     <div class="price-grid">
-      <div class="price-card"><div class="n">Website statis / landing</div><div class="p">Rp 150rb - 400rb</div></div>
-      <div class="price-card"><div class="n">Website dinamis / dashboard</div><div class="p">Rp 400rb - 1,2jt</div></div>
-      <div class="price-card"><div class="n">Telegram bot custom</div><div class="p">Rp 200rb - 800rb</div></div>
-      <div class="price-card"><div class="n">Automation / scraping tools</div><div class="p">Rp 250rb - 900rb</div></div>
-      <div class="price-card"><div class="n">AI agent / workflow</div><div class="p">Rp 500rb - 1,5jt</div></div>
-      <div class="price-card"><div class="n">Maintenance bulanan</div><div class="p">Rp 150rb - 300rb/bln</div></div>
+      <div class="price-card reveal"><div class="n">Website statis / landing</div><div class="p">Rp 150rb - 400rb</div></div>
+      <div class="price-card reveal"><div class="n">Website dinamis / dashboard</div><div class="p">Rp 400rb - 1,2jt</div></div>
+      <div class="price-card reveal"><div class="n">Telegram bot custom</div><div class="p">Rp 200rb - 800rb</div></div>
+      <div class="price-card reveal"><div class="n">Automation / scraping tools</div><div class="p">Rp 250rb - 900rb</div></div>
+      <div class="price-card reveal"><div class="n">AI agent / workflow</div><div class="p">Rp 500rb - 1,5jt</div></div>
+      <div class="price-card reveal"><div class="n">Maintenance bulanan</div><div class="p">Rp 150rb - 300rb/bln</div></div>
     </div>
   </div>
 </section>
@@ -713,7 +713,7 @@ footer { border-top: 1px solid var(--border); padding: 16px 0; color: #5a5f68; f
       <h2 class="section-title holo">Hubungi Cilok Tech</h2>
       <p class="section-desc">Klik icon untuk langsung buka chat di Telegram.</p>
     </div>
-    <div class="contact-wrap">
+    <div class="contact-wrap reveal">
       <a class="contact-icon" href="https://t.me/cilokesteh" target="_blank" rel="noopener" title="Telegram" aria-label="Telegram">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
           <circle cx="12" cy="12" r="11" fill="#2AABEE"/>
@@ -805,6 +805,29 @@ setInterval(() => {
   });
 })();
 
+
+/* ===== Neon glow on touch — ripple dari titik sentuhan ===== */
+body, .skill-card, .project-card, .contact-icon {
+  touch-action: manipulation;
+}
+.touch-neon {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,255,200,0.35) 0%, rgba(0,255,200,0.1) 30%, transparent 70%);
+  width: 120px;
+  height: 120px;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  z-index: 9999;
+  animation: neonTouchRipple 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+@keyframes neonTouchRipple {
+  0%   { transform: translate(-50%, -50%) scale(0); opacity: 0.8; }
+  50%  { opacity: 0.5; }
+  100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
+}
+
 /* scroll reveal — elements appear from left when scrolled into view */
 (function(){
   var reveals = document.querySelectorAll('.reveal');
@@ -843,6 +866,27 @@ window.addEventListener('load', forceTop);
     c.addEventListener('touchend', remTouch, {passive:true});
     c.addEventListener('touchcancel', remTouch, {passive:true});
   });
+})();
+
+/* neon glow on touch — ripple from touch point */
+(function(){
+  var touchActive = false;
+  document.addEventListener('touchstart', function(e){
+    touchActive = true;
+  }, {passive: true});
+  document.addEventListener('touchend', function(){
+    touchActive = false;
+  }, {passive: true});
+  document.addEventListener('touchmove', function(e){
+    if (!touchActive) return;
+    var touch = e.touches[0];
+    var el = document.createElement('div');
+    el.className = 'touch-neon';
+    el.style.left = touch.clientX + 'px';
+    el.style.top = touch.clientY + 'px';
+    document.body.appendChild(el);
+    el.addEventListener('animationend', function(){ el.remove(); });
+  }, {passive: true});
 })();
 </script>
 </body>
