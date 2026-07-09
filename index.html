@@ -98,65 +98,105 @@ a:hover { color: var(--neon1); text-shadow: 0 0 8px var(--neon1); }
 }
 @keyframes holoText { to { background-position: 300% 0; } }
 
-/* ===== Navbar ===== */
-.navbar {
+/* ===== Topbar ===== */
+.topbar {
   position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  background: rgba(3,5,10,0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-}
-.nav-inner {
+  top: 14px; left: 20px; right: 20px;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  padding: 12px 18px;
+  background: rgba(10,13,22,0.8);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  box-shadow: 0 0 30px rgba(0,255,200,0.08), 0 10px 30px rgba(0,0,0,0.5);
 }
-.logo {
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-family: 'Orbitron', sans-serif;
   font-weight: 900;
-  font-size: 1.35rem;
-  letter-spacing: 1px;
   color: #fff;
+  letter-spacing: 1px;
+  text-shadow: 0 0 12px var(--neon1);
 }
-.nav-links {
-  display: flex;
-  gap: 28px;
-  list-style: none;
+.brand .logo {
+  width: 30px; height: 30px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--neon1), var(--neon3));
+  box-shadow: 0 0 14px var(--neon1);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #001a14; font-weight: 900;
 }
-.nav-links a {
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  transition: color .2s ease;
+.brand-name { position: relative; display: inline-block; }
+
+.glitch { position: relative; }
+.glitch::before, .glitch::after {
+  content: attr(data-text);
+  position: absolute; left: 0; top: 0; width: 100%;
+  overflow: hidden;
 }
-.nav-links a:hover { color: var(--neon1); }
+.glitch::before {
+  color: var(--neon2);
+  clip-path: inset(0 0 55% 0);
+  animation: glitchTop 2.6s infinite linear alternate;
+  text-shadow: -2px 0 var(--neon2);
+}
+.glitch::after {
+  color: var(--neon3);
+  clip-path: inset(55% 0 0 0);
+  animation: glitchBot 2.1s infinite linear alternate;
+  text-shadow: 2px 0 var(--neon3);
+}
+@keyframes glitchTop {
+  0%,100% { transform: translate(0,0); }
+  20% { transform: translate(-2px,-1px); }
+  40% { transform: translate(2px,1px); }
+  60% { transform: translate(-1px,0); }
+  80% { transform: translate(1px,-1px); }
+}
+@keyframes glitchBot {
+  0%,100% { transform: translate(0,0); }
+  25% { transform: translate(2px,1px); }
+  50% { transform: translate(-2px,-1px); }
+  75% { transform: translate(1px,1px); }
+}
+
+.topnav { display: flex; gap: 6px; align-items: center; }
+.topnav a {
+  color: #b8bcc4;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all .3s;
+}
+.topnav a:hover { color: #fff; background: rgba(255,255,255,0.08); text-decoration: none; box-shadow: 0 0 0 1px rgba(0,255,200,0.25); }
+.nav-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.2rem; cursor: pointer; }
 
 /* ===== Hero ===== */
 .hero {
-  min-height: 100dvh;
+  position: relative;
+  z-index: 1;
+  padding: 130px 0 70px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
-  padding-top: 72px;
   text-align: center;
+  min-height: 70vh;
 }
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 920px;
-}
-.badge {
+.hero-badge {
   display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 18px;
-  background: rgba(0,255,200,0.08);
+  padding: 8px 16px;
+  background: rgba(0,255,200,0.1);
+  color: var(--neon1);
   border: 1px solid rgba(0,255,200,0.35);
   border-radius: 999px;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 1px;
   text-shadow: 0 0 8px var(--neon1);
@@ -184,7 +224,7 @@ a:hover { color: var(--neon1); text-shadow: 0 0 8px var(--neon1); }
 }
 .accent { color: var(--neon1); }
 
-/* ===== FLIP WORD (hanya 3 kata: otomatis, mandiri, 24/7) ===== */
+/* ===== FLIP WORD (3D rotateX cycle) ===== */
 .flip-wrap {
   display: inline-block;
   vertical-align: baseline;
@@ -209,8 +249,6 @@ a:hover { color: var(--neon1); text-shadow: 0 0 8px var(--neon1); }
   98%  { transform: rotateX(90deg);  opacity: 0; }
   100% { transform: rotateX(90deg);  opacity: 0; }
 }
-
-/* ===== Hero desc ===== */
 .hero-desc {
   margin-top: 18px;
   color: #c5c8ce;
@@ -242,7 +280,7 @@ a:hover { color: var(--neon1); text-shadow: 0 0 8px var(--neon1); }
 .flying-robot .eye { animation: eyePulse 2.4s ease-in-out infinite; }
 @keyframes eyePulse { 0%,100% { opacity:1; } 50% { opacity:.55; } }
 
-/* ===== Flying robot 2 (hero kiri) — mirror animation + flame ===== */
+/* ===== Flying robot 2 (hero kiri) — mirror animation ===== */
 .flying-robot2 {
   position: absolute;
   top: 18%; left: 3%;
@@ -252,8 +290,6 @@ a:hover { color: var(--neon1); text-shadow: 0 0 8px var(--neon1); }
   animation: robotFly2 14s ease-in-out infinite;
   will-change: transform;
 }
-.flying-robot2 .flame { animation: flameFlicker .22s steps(2) infinite; transform-origin: 60px 118px; }
-.flying-robot2 .eye { animation: eyePulse 2.4s ease-in-out infinite; }
 @keyframes robotFly2 {
   0%   { transform: translate(0,0) scale(1) rotate(6deg); }
   20%  { transform: translate(12vw,-24px) scale(0.85) rotate(-5deg); }
@@ -362,332 +398,288 @@ a:hover { color: var(--neon1); text-shadow: 0 0 8px var(--neon1); }
   z-index: 2;
   animation: none;
 }
-.skill-card:hover {
-  transform: translateY(-4px) translateZ(0);
-  border-color: rgba(0,255,200,0.4);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+.skill-card:hover::after,
+.skill-card:active::after,
+.skill-card.touched::after { opacity: 1; animation: borderSpin 3s linear infinite; }
+.skill-card:hover { transform: translateY(-4px); border-color: rgba(0,255,200,0.4); box-shadow: 0 0 22px rgba(0,255,200,0.12); }
+.skill-card:active,
+.skill-card.touched {
+  transform: translateY(-4px) scale(0.99);
+  border-color: rgba(0,255,200,0.6);
+  box-shadow: 0 0 30px rgba(0,255,200,0.2), inset 0 0 14px rgba(0,255,200,0.06);
+  will-change: transform;
 }
-.skill-card:hover::after { opacity: 1; animation: neonSweep 1.6s linear infinite; }
-@keyframes neonSweep { to { transform: rotate(360deg); } }
-.skill-icon {
-  width: 52px; height: 52px;
-  background: linear-gradient(145deg, #1a2233, #0c1220);
-  border: 1px solid rgba(0,255,200,0.25);
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
-  margin-bottom: 18px;
-  box-shadow: 0 0 0 1px rgba(0,255,200,0.1) inset;
+.skill-card:active::after,
+.skill-card.touched::after { opacity: 1; }
+.skill-card:active::before,
+.skill-card.touched::before {
+  animation: sweepNeon .7s ease-out;
 }
-.skill-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
-.skill-desc { color: #a8aebf; font-size: 0.92rem; line-height: 1.55; }
+.skill-card h3 { color: #fff; font-size: 1.05rem; margin-bottom: 8px; letter-spacing: .3px; }
+.skill-card p { color: #c8cbd4; font-size: 0.9rem; line-height: 1.55; }
 
-/* ===== Projects ===== */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 22px;
-  margin-top: 30px;
+/* ===== Skill marquee (teks口诀 di bawah card) ===== */
+.skill-marquee {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+  -webkit-mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+          mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
 }
-.project-card {
+.skill-marquee .track {
+  display: inline-flex;
+  gap: 24px;
+  white-space: nowrap;
+  animation: marquee 12s linear infinite;
+}
+.skill-marquee .track span {
+  font-size: 0.76rem;
+  color: var(--neon1);
+  text-shadow: 0 0 6px rgba(0,255,200,0.45);
+  letter-spacing: 1px;
+  padding: 2px 0;
+}
+.skill-marquee .track span::before { content: '› '; color: var(--neon2); }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes sweepNeon { from { transform: translateX(-180%); } to { transform: translateX(180%); } }
+
+/* ===== Price ===== */
+.price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 18px; }
+.price-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
-  position: relative;
+  border-radius: var(--radius-sm);
+  padding: 18px;
+  transition: all .3s;
 }
-.project-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(0,255,200,0.35);
-  box-shadow: 0 25px 60px rgba(0,0,0,0.4);
-}
-.project-header {
-  height: 160px;
-  background: linear-gradient(135deg, #0c1220 0%, #1a2233 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-.project-header::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(45deg, transparent 40%, rgba(0,255,200,0.12) 50%, transparent 60%);
-  animation: shine 3s infinite;
-}
-@keyframes shine { 0%,100% { transform: translateX(-200%); } 50% { transform: translateX(300%); } }
-.project-body { padding: 22px; }
-.project-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
-.project-desc { color: #a8aebf; font-size: 0.92rem; line-height: 1.55; margin-bottom: 16px; }
-.project-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-.tag {
-  font-size: 0.7rem;
-  padding: 3px 10px;
-  background: rgba(0,255,200,0.08);
-  border: 1px solid rgba(0,255,200,0.25);
-  border-radius: 999px;
-  color: var(--neon1);
-}
+.price-card:hover { border-color: rgba(0,255,200,0.35); transform: translateY(-3px); box-shadow: 0 0 24px rgba(0,255,200,0.12); }
+.price-card .n { color: #b8bcc4; font-size: 0.9rem; margin-bottom: 4px; }
+.price-card .p { color: var(--neon1); font-weight: 900; font-size: 1.05rem; text-shadow: 0 0 8px rgba(0,255,200,0.35); }
 
-/* ===== Footer ===== */
-.footer {
-  border-top: 1px solid var(--border);
-  padding: 50px 0 40px;
-  text-align: center;
-  color: #7a82a0;
-  font-size: 0.9rem;
-}
-.footer a { color: var(--neon1); }
-.cta-btn {
+/* ===== Contact ===== */
+.contact-wrap { margin-top: 18px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.contact-icon {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  margin-top: 30px;
-  padding: 14px 32px;
-  background: linear-gradient(90deg, var(--neon1), #00d4a8);
-  color: #03050a;
-  font-weight: 800;
-  font-size: 0.95rem;
-  letter-spacing: 0.5px;
-  border-radius: 999px;
-  text-decoration: none;
-  box-shadow: 0 10px 30px rgba(0,255,200,0.35);
-  transition: transform .2s ease, box-shadow .2s ease;
+  justify-content: center;
+  width: 56px; height: 56px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: all .3s;
 }
-.cta-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 15px 40px rgba(0,255,200,0.5);
-}
+.contact-icon:hover { transform: translateY(-3px); border-color: rgba(0,255,200,0.4); box-shadow: 0 0 24px rgba(0,255,200,0.15); }
+.contact-icon svg { display: block; }
 
-/* ===== Smooth 3D scroll enhancements ===== */
-.section {
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
+/* ===== Global status ticker ===== */
+.status-ticker {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(0,255,200,0.03);
+  overflow: hidden;
+  padding: 10px 0;
+  margin-top: 20px;
+  -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
+.status-ticker .track {
+  display: inline-flex; gap: 40px; white-space: nowrap;
+  font-size: 0.8rem; color: var(--neon1); letter-spacing: 1px;
+  animation: marquee 22s linear infinite;
+}
+.status-ticker .track span { text-shadow: 0 0 6px rgba(0,255,200,0.4); }
+.status-ticker .track span b { color: var(--neon2); }
 
-/* Smooth parallax effect for sections */
-@media (prefers-reduced-motion: no-preference) {
-  .section {
-    transition: transform 0.1s cubic-bezier(0.23, 1, 0.32, 1);
-  }
-}
+footer { border-top: 1px solid var(--border); padding: 16px 0; color: #5a5f68; font-size: 0.8rem; text-align: center; position: relative; z-index: 1; }
 
-/* Enhanced scroll smoothness */
-html {
-  scroll-behavior: smooth;
+@media (max-width: 900px) {
+  .topnav { display: none; }
+  .nav-toggle { display: block; }
+  .topnav.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 16px; right: 16px; padding: 12px; background: rgba(10,13,22,0.95); border: 1px solid var(--border); border-radius: 16px; }
 }
-
-/* 3D depth for cards */
-.skill-card, .project-card {
-  transform-style: preserve-3d;
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), 
-              box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+@media (max-width: 520px) {
+  .price-grid { grid-template-columns: 1fr; }
+  /* matiin animasi fixed-layer berat biar Android gak lag */
+  body::before,
+  body::after,
+  .batik-bg { animation: none !important; }
+  .flying-robot,
+  .flying-robot2,
+  .robot-layanan { animation-duration: 20s !important; }
 }
-
-.skill-card:hover, .project-card:hover {
-  transform: translateY(-8px) rotateX(2deg) rotateY(1deg);
-}
-
-/* Smooth hover transitions */
-.nav-links a {
-  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.cta-btn {
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-}
+@keyframes borderSpin { to { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
 
 <div class="batik-bg"></div>
 
-<!-- Navbar -->
-<nav class="navbar">
-  <div class="container nav-inner">
-    <div class="logo">CILOK<span style="color:#00ffc8">.</span>TECH</div>
-    <ul class="nav-links">
-      <li><a href="#layanan">Layanan</a></li>
-      <li><a href="#project">Project</a></li>
-      <li><a href="#kontak">Kontak</a></li>
-    </ul>
-  </div>
-</nav>
+<div class="topbar" id="topbar">
+  <a href="#beranda" class="brand"><span class="logo">C</span> <span class="brand-name glitch" data-text="CILOK TECH">CILOK TECH</span></a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+  <nav class="topnav" id="topNav">
+    <a href="#layanan">Layanan</a>
+    <a href="#harga">Harga</a>
+    <a href="#kontak">Kontak</a>
+  </nav>
+</div>
 
-<!-- Hero -->
-<header class="hero">
-  <div class="container hero-content">
-    <div class="badge">⚡ DIGITAL OPERATOR</div>
+<section class="hero container" id="beranda">
+  <div class="flying-robot2" aria-hidden="true">
+    <svg viewBox="0 0 120 150" width="78" height="98">
+      <path class="flame" d="M48 120 q12 30 24 0 q-12 -10 -24 0z" fill="#ff00aa"/>
+      <path class="flame" d="M52 120 q8 20 16 0 q-8 -6 -16 0z" fill="#00ffc8"/>
+      <rect x="46" y="112" width="9" height="10" rx="3" fill="#111622" stroke="#ff00aa" stroke-width="1.5"/>
+      <rect x="65" y="112" width="9" height="10" rx="3" fill="#111622" stroke="#ff00aa" stroke-width="1.5"/>
+      <rect x="24" y="64" width="11" height="30" rx="5.5" fill="#111622" stroke="#ff00aa" stroke-width="1.5"/>
+      <rect x="85" y="64" width="11" height="30" rx="5.5" fill="#111622" stroke="#ff00aa" stroke-width="1.5"/>
+      <rect x="37" y="58" width="46" height="54" rx="11" fill="#111622" stroke="#ff00aa" stroke-width="2"/>
+      <rect x="46" y="72" width="28" height="20" rx="5" fill="#0a0d16" stroke="#00ffc8" stroke-width="1.2"/>
+      <circle cx="54" cy="82" r="2.4" fill="#00a8ff"/>
+      <circle cx="66" cy="82" r="2.4" fill="#ff00aa"/>
+      <rect x="41" y="20" width="38" height="36" rx="9" fill="#0a0d16" stroke="#00ffc8" stroke-width="2"/>
+      <line x1="60" y1="20" x2="60" y2="6" stroke="#00a8ff" stroke-width="2"/>
+      <circle cx="60" cy="4" r="3.2" fill="#00a8ff"/>
+      <circle class="eye" cx="52" cy="38" r="5.2" fill="#ff00aa"/>
+      <circle class="eye" cx="68" cy="38" r="5.2" fill="#ff00aa"/>
+      <rect x="52" y="48" width="16" height="3" rx="1.5" fill="#00ffc8"/>
+    </svg>
+  </div>
+  <div class="flying-robot" aria-hidden="true">
+    <svg viewBox="0 0 120 150" width="92" height="115">
+      <!-- jetpack thruster flame -->
+      <path class="flame" d="M48 120 q12 30 24 0 q-12 -10 -24 0z" fill="#00ffc8"/>
+      <path class="flame" d="M52 120 q8 20 16 0 q-8 -6 -16 0z" fill="#ffaa00"/>
+      <!-- jetpack nozzles -->
+      <rect x="46" y="112" width="9" height="10" rx="3" fill="#111622" stroke="#00a8ff" stroke-width="1.5"/>
+      <rect x="65" y="112" width="9" height="10" rx="3" fill="#111622" stroke="#00a8ff" stroke-width="1.5"/>
+      <!-- arms -->
+      <rect x="24" y="64" width="11" height="30" rx="5.5" fill="#111622" stroke="#00ffc8" stroke-width="1.5"/>
+      <rect x="85" y="64" width="11" height="30" rx="5.5" fill="#111622" stroke="#00ffc8" stroke-width="1.5"/>
+      <!-- body -->
+      <rect x="37" y="58" width="46" height="54" rx="11" fill="#111622" stroke="#00ffc8" stroke-width="2"/>
+      <rect x="46" y="72" width="28" height="20" rx="5" fill="#0a0d16" stroke="#00a8ff" stroke-width="1.2"/>
+      <circle cx="54" cy="82" r="2.4" fill="#ff00aa"/>
+      <circle cx="66" cy="82" r="2.4" fill="#00ffc8"/>
+      <!-- head -->
+      <rect x="41" y="20" width="38" height="36" rx="9" fill="#0a0d16" stroke="#00a8ff" stroke-width="2"/>
+      <!-- antenna -->
+      <line x1="60" y1="20" x2="60" y2="6" stroke="#ff00aa" stroke-width="2"/>
+      <circle cx="60" cy="4" r="3.2" fill="#ff00aa"/>
+      <!-- eyes -->
+      <circle class="eye" cx="52" cy="38" r="5.2" fill="#00ffc8"/>
+      <circle class="eye" cx="68" cy="38" r="5.2" fill="#00ffc8"/>
+      <!-- mouth -->
+      <rect x="52" y="48" width="16" height="3" rx="1.5" fill="#00a8ff"/>
+    </svg>
+  </div>
+  <div>
+    <div class="hero-badge">⬢ FULL-SPECTRUM DIGITAL OPERATOR</div>
     <h1 class="hero-title">Sistem yang <span class="flip-wrap"><span class="flip-word" id="flipWord">otomatis</span></span><br>tanpa kamu yang urus</h1>
-    <p class="hero-desc">Website, bot, dashboard, scraping, automation, AI, crypto tools — gue urus engineering, kamu terima hasil.</p>
-    <a href="#kontak" class="cta-btn">Mulai Project →</a>
+    <p class="hero-desc">Website, bot, dashboard, scraping, automation, AI, crypto tools. Gue handle engineering-nya — kamu tinggal terima hasilnya.</p>
   </div>
+</section>
 
-  <!-- Robot 1 (kanan) -->
-  <svg class="flying-robot" width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="48" y="48" width="44" height="44" rx="8" fill="#1a2233" stroke="#ff3366" stroke-width="3"/>
-    <rect x="58" y="58" width="24" height="24" rx="4" fill="#0c1220"/>
-    <circle cx="70" cy="70" r="7" fill="#ff3366" class="eye"/>
-    <rect x="52" y="40" width="36" height="8" rx="4" fill="#ff3366"/>
-    <rect x="62" y="92" width="16" height="18" rx="3" fill="#ff3366"/>
-    <rect x="42" y="98" width="12" height="22" rx="3" fill="#ff3366"/>
-    <rect x="86" y="98" width="12" height="22" rx="3" fill="#ff3366"/>
-    <ellipse cx="70" cy="115" rx="8" ry="3" fill="#ffaa00" class="flame"/>
-    <ellipse cx="70" cy="120" rx="5" ry="2" fill="#ffdd44" class="flame"/>
-  </svg>
-
-  <!-- Robot 2 (kiri) -->
-  <svg class="flying-robot2" width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="48" y="48" width="44" height="44" rx="8" fill="#1a2233" stroke="#ff3366" stroke-width="3"/>
-    <rect x="58" y="58" width="24" height="24" rx="4" fill="#0c1220"/>
-    <circle cx="70" cy="70" r="7" fill="#ff3366" class="eye"/>
-    <rect x="52" y="40" width="36" height="8" rx="4" fill="#ff3366"/>
-    <rect x="62" y="92" width="16" height="18" rx="3" fill="#ff3366"/>
-    <rect x="42" y="98" width="12" height="22" rx="3" fill="#ff3366"/>
-    <rect x="86" y="98" width="12" height="22" rx="3" fill="#ff3366"/>
-    <ellipse cx="70" cy="115" rx="8" ry="3" fill="#ffaa00" class="flame"/>
-    <ellipse cx="70" cy="120" rx="5" ry="2" fill="#ffdd44" class="flame"/>
-  </svg>
-</header>
-
-<!-- Layanan -->
-<section id="layanan" class="section">
+<section class="section" id="layanan">
+  <div class="robot-layanan" aria-hidden="true">
+    <svg viewBox="0 0 120 150" width="74" height="92">
+      <path class="flame" d="M48 120 q12 30 24 0 q-12 -10 -24 0z" fill="#ff00aa"/>
+      <path class="flame" d="M52 120 q8 20 16 0 q-8 -6 -16 0z" fill="#00ffc8"/>
+      <rect x="46" y="112" width="9" height="10" rx="3" fill="#111622" stroke="#ff00aa" stroke-width="1.5"/>
+      <rect x="65" y="112" width="9" height="10" rx="3" fill="#111622" stroke="#ff00aa" stroke-width="1.5"/>
+      <rect x="24" y="64" width="11" height="30" rx="5.5" fill="#111622" stroke="#ff00aa" stroke-width="1.5"/>
+      <rect x="85" y="64" width="11" height="30" rx="5.5" fill="#111622" stroke="#ff00aa" stroke-width="1.5"/>
+      <rect x="37" y="58" width="46" height="54" rx="11" fill="#111622" stroke="#ff00aa" stroke-width="2"/>
+      <rect x="46" y="72" width="28" height="20" rx="5" fill="#0a0d16" stroke="#00ffc8" stroke-width="1.2"/>
+      <circle cx="54" cy="82" r="2.4" fill="#00a8ff"/>
+      <circle cx="66" cy="82" r="2.4" fill="#ff00aa"/>
+      <rect x="41" y="20" width="38" height="36" rx="9" fill="#0a0d16" stroke="#00ffc8" stroke-width="2"/>
+      <line x1="60" y1="20" x2="60" y2="6" stroke="#00a8ff" stroke-width="2"/>
+      <circle cx="60" cy="4" r="3.2" fill="#00a8ff"/>
+      <circle class="eye" cx="52" cy="38" r="5.2" fill="#ff00aa"/>
+      <circle class="eye" cx="68" cy="38" r="5.2" fill="#ff00aa"/>
+      <rect x="52" y="48" width="16" height="3" rx="1.5" fill="#00ffc8"/>
+    </svg>
+  </div>
   <div class="container">
-    <div class="section-badge">SERVICES</div>
-    <h2 class="section-title holo">Apa yang Gue Bikin</h2>
-    <p class="section-desc">Dari web statis sampai sistem otomatis full-stack. Semua berjalan sendiri, tanpa ribet.</p>
-
+    <div class="section-header">
+      <span class="section-badge">// Layanan</span>
+      <h2 class="section-title holo">Yang Bisa Dibantuin</h2>
+      <p class="section-desc">Pilih sesuai kebutuhan, gue urus implementasi sampai jalan.</p>
+    </div>
     <div class="skills-grid">
-      <div class="skill-card">
-        <div class="skill-icon">🌐</div>
-        <div class="skill-title">Website & Landing Page</div>
-        <div class="skill-desc">Modern, cepat, mobile-first. Bisa statis atau full-stack dengan database.</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🤖</div>
-        <div class="skill-title">Bot & Automation</div>
-        <div class="skill-desc">Telegram bot, scraper, auto-login, cron job, headless browser — semuanya otomatis.</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">📊</div>
-        <div class="skill-title">Dashboard & Monitoring</div>
-        <div class="skill-desc">Real-time stats, VPS ops, crypto portfolio, custom analytics panel.</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🔗</div>
-        <div class="skill-title">API & Integration</div>
-        <div class="skill-desc">Webhook, payment gateway, LLM router, OAuth, self-hosted AI gateway.</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🧠</div>
-        <div class="skill-title">AI & Crypto Tools</div>
-        <div class="skill-desc">Token scanner, on-chain automation, MEV, NFT tools, LLM fine-tuning.</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🛠️</div>
-        <div class="skill-title">Maintenance & Ops</div>
-        <div class="skill-desc">PM2, systemd, Docker, backup otomatis, monitoring, auto-restart.</div>
-      </div>
+      <div class="skill-card"><h3>🌐 Website / Web App</h3><p>Landing page, company profile, admin panel, dashboard. HTML/React/Next.js + Node/Python.</p><div class="skill-marquee"><div class="track"><span>WEB APP</span><span>STATIS</span><span>DINAMIS</span><span>DEPLOY VPS</span><span>RESPONSIVE</span><span>SSR</span><span>WEB APP</span><span>STATIS</span><span>DINAMIS</span><span>DEPLOY VPS</span><span>RESPONSIVE</span><span>SSR</span></div></div></div>
+      <div class="skill-card"><h3>🤖 Telegram Bot</h3><p>Notifikasi, auto-claim, scanner, voting, automation 24/7.</p><div class="skill-marquee"><div class="track"><span>BOT</span><span>PYTHON</span><span>NODE.JS</span><span>24/7</span><span>ALERT</span><span>AUTO-CLAIM</span><span>BOT</span><span>PYTHON</span><span>NODE.JS</span><span>24/7</span><span>ALERT</span><span>AUTO-CLAIM</span></div></div></div>
+      <div class="skill-card"><h3>📊 Dashboard</h3><p>Real-time monitoring server/provider/log dengan auto-refresh.</p><div class="skill-marquee"><div class="track"><span>REALTIME</span><span>CHARTS</span><span>ALERTS</span><span>LOGS</span><span>METRICS</span><span>LIVE API</span><span>REALTIME</span><span>CHARTS</span><span>ALERTS</span><span>LOGS</span><span>METRICS</span><span>LIVE API</span></div></div></div>
+      <div class="skill-card"><h3>🕷 Scraping & Report</h3><p>Ambil data dari web/API, olah jadi report atau file siap pakai.</p><div class="skill-marquee"><div class="track"><span>TRACKING</span><span>API</span><span>PARSE</span><span>EXPORT</span><span>WATCH</span><span>SCRAPE</span><span>TRACKING</span><span>API</span><span>PARSE</span><span>EXPORT</span><span>WATCH</span><span>SCRAPE</span></div></div></div>
+      <div class="skill-card"><h3>⚡ Automation</h3><p>Bot massal, batch processing, cron pipelines.</p><div class="skill-marquee"><div class="track"><span>CRON</span><span>BATCH</span><span>PLAYWRIGHT</span><span>PIPELINE</span><span>MASS</span><span>SCHEDULER</span><span>CRON</span><span>BATCH</span><span>PLAYWRIGHT</span><span>PIPELINE</span><span>MASS</span><span>SCHEDULER</span></div></div></div>
+      <div class="skill-card"><h3>🧠 AI / Workflow</h3><p>Agent AI, RAG, workflow LLM, retrieval.</p><div class="skill-marquee"><div class="track"><span>RAG</span><span>AGENT</span><span>LLM</span><span>SUMMARIZER</span><span>RETRIEVAL</span><span>PRIVATE</span><span>RAG</span><span>AGENT</span><span>LLM</span><span>SUMMARIZER</span><span>RETRIEVAL</span><span>PRIVATE</span></div></div></div>
+      <div class="skill-card"><h3>⛓ Crypto Tools</h3><p>Wallet generation, DeFi, token scanner, airdrop tools.</p><div class="skill-marquee"><div class="track"><span>MULTI-CHAIN</span><span>DEFI</span><span>SCANNER</span><span>AIRDROP</span><span>WALLET</span><span>WEB3</span><span>MULTI-CHAIN</span><span>DEFI</span><span>SCANNER</span><span>AIRDROP</span><span>WALLET</span><span>WEB3</span></div></div></div>
+      <div class="skill-card"><h3>🧩 Browser Automation</h3><p>Playwright, undetected headless, session automation, OAuth helpers.</p><div class="skill-marquee"><div class="track"><span>HEADLESS</span><span>DESKTOP</span><span>OAUTH</span><span>SESSION</span><span>QA</span><span>UNDETECTED</span><span>HEADLESS</span><span>DESKTOP</span><span>OAUTH</span><span>SESSION</span><span>QA</span><span>UNDETECTED</span></div></div></div>
     </div>
   </div>
-
-  <!-- Robot di section Layanan -->
-  <svg class="robot-layanan" width="110" height="110" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="35" y="35" width="40" height="40" rx="7" fill="#1a2233" stroke="#ff00aa" stroke-width="3"/>
-    <rect x="45" y="45" width="20" height="20" rx="3" fill="#0c1220"/>
-    <circle cx="55" cy="55" r="5" fill="#ff00aa" class="eye"/>
-    <rect x="40" y="28" width="30" height="7" rx="3" fill="#ff00aa"/>
-    <rect x="48" y="75" width="14" height="16" rx="2" fill="#ff00aa"/>
-    <rect x="30" y="82" width="10" height="18" rx="2" fill="#ff00aa"/>
-    <rect x="70" y="82" width="10" height="18" rx="2" fill="#ff00aa"/>
-    <ellipse cx="55" cy="100" rx="6" ry="2.5" fill="#ffaa00" class="flame"/>
-  </svg>
 </section>
 
-<!-- Project -->
-<section id="project" class="section">
+<section class="section" id="harga">
   <div class="container">
-    <div class="section-badge">SELECTED WORK</div>
-    <h2 class="section-title holo">Project yang Udah Jalan</h2>
-    <p class="section-desc">Semua project ini aktif, berjalan otomatis, dan dipelihara secara rutin.</p>
-
-    <div class="projects-grid">
-      <div class="project-card">
-        <div class="project-header" style="background: linear-gradient(135deg, #0c1220 0%, #1a2233 100%);">
-          <span style="font-size:2.2rem; opacity:.9;">🔥</span>
-        </div>
-        <div class="project-body">
-          <div class="project-title">9Router Antigravity Bot</div>
-          <div class="project-desc">Auto-login 50+ akun Google ke 9Router Antigravity provider. Headless, anti-detect, full logging.</div>
-          <div class="project-tags">
-            <span class="tag">Python</span>
-            <span class="tag">DrissionPage</span>
-            <span class="tag">OAuth</span>
-          </div>
-        </div>
-      </div>
-      <div class="project-card">
-        <div class="project-header" style="background: linear-gradient(135deg, #0c1220 0%, #1a2233 100%);">
-          <span style="font-size:2.2rem; opacity:.9;">💰</span>
-        </div>
-        <div class="project-body">
-          <div class="project-title">ITLG Claim Bot v2.2</div>
-          <div class="project-desc">Auto claim mining 4h + group mining 24h + recovery. Full Indonesia, face login, Telegram notif.</div>
-          <div class="project-tags">
-            <span class="tag">Python</span>
-            <span class="tag">Telegram</span>
-            <span class="tag">IMAP</span>
-          </div>
-        </div>
-      </div>
-      <div class="project-card">
-        <div class="project-header" style="background: linear-gradient(135deg, #0c1220 0%, #1a2233 100%);">
-          <span style="font-size:2.2rem; opacity:.9;">📡</span>
-        </div>
-        <div class="project-body">
-          <div class="project-title">Crypto Token Scanner</div>
-          <div class="project-desc">Scan token baru di Solana & BSC, anti-scam filter, flash pump detection, Telegram alert real-time.</div>
-          <div class="project-tags">
-            <span class="tag">Python</span>
-            <span class="tag">DexScreener</span>
-            <span class="tag">Telegram</span>
-          </div>
-        </div>
-      </div>
+    <div class="section-header">
+      <span class="section-badge">// Paket</span>
+      <h2 class="section-title holo">Harga</h2>
+      <p class="section-desc">Estimasi kasar. Bisa nego sesuai scope dan timeline.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card"><div class="n">Website statis / landing</div><div class="p">Rp 150rb - 400rb</div></div>
+      <div class="price-card"><div class="n">Website dinamis / dashboard</div><div class="p">Rp 400rb - 1,2jt</div></div>
+      <div class="price-card"><div class="n">Telegram bot custom</div><div class="p">Rp 200rb - 800rb</div></div>
+      <div class="price-card"><div class="n">Automation / scraping tools</div><div class="p">Rp 250rb - 900rb</div></div>
+      <div class="price-card"><div class="n">AI agent / workflow</div><div class="p">Rp 500rb - 1,5jt</div></div>
+      <div class="price-card"><div class="n">Maintenance bulanan</div><div class="p">Rp 150rb - 300rb/bln</div></div>
     </div>
   </div>
 </section>
 
-<!-- Kontak -->
-<section id="kontak" class="section">
-  <div class="container" style="text-align:center; max-width:620px;">
-    <div class="section-badge">GET IN TOUCH</div>
-    <h2 class="section-title holo" style="margin-top:20px;">Mau mulai project?</h2>
-    <p class="section-desc" style="margin:16px auto 0;">Kirim DM atau WA. Gue jawab dalam 1-2 jam (kecuali lagi off-grid).</p>
-    <a href="https://wa.me/6287838620164" class="cta-btn" target="_blank">💬 Chat via WhatsApp</a>
-    <div style="margin-top:40px; color:#5a6278; font-size:0.85rem;">
-      Jakarta, Indonesia • WIB (UTC+7)
-    </div>
-  </div>
-</section>
-
-<footer class="footer">
+<section class="section" id="kontak">
   <div class="container">
-    © 2026 Cilok Tech — Built with caffeine &amp; neon.
+    <div class="section-header">
+      <span class="section-badge">// Kontak</span>
+      <h2 class="section-title holo">Hubungi Cilok Tech</h2>
+      <p class="section-desc">Klik icon untuk langsung buka chat di Telegram.</p>
+    </div>
+    <div class="contact-wrap">
+      <a class="contact-icon" href="https://t.me/cilokesteh" target="_blank" rel="noopener" title="Telegram" aria-label="Telegram">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="11" fill="#2AABEE"/>
+          <path d="M9.78 14.34l-1.06 3.43c.16.45.5.56.9.35l2.46-1.86 4.82 3.55c.88.49 1.52.24 1.78-.82l3.23-15.2c.32-1.46-.55-2.13-1.5-1.77L4.2 10.9c-1.4.54-1.39 1.34-.25 1.7l3.86 1.2 8.96-5.65c.42-.26.8-.12.49.16" fill="#fff"/>
+        </svg>
+      </a>
+    </div>
   </div>
+</section>
+
+<div class="status-ticker">
+  <div class="track">
+    <span>SYSTEM <b>ONLINE</b></span><span>STATUS: <b>AVAILABLE</b></span><span>UPTIME 99.9%</span><span>TELEGRAM ALERTS <b>ACTIVE</b></span><span>MONITORING <b>LIVE</b></span><span>NEW OPS <b>OPEN</b></span><span>DEPLOY PIPELINE <b>READY</b></span>
+    <span>SYSTEM <b>ONLINE</b></span><span>STATUS: <b>AVAILABLE</b></span><span>UPTIME 99.9%</span><span>TELEGRAM ALERTS <b>ACTIVE</b></span><span>MONITORING <b>LIVE</b></span><span>NEW OPS <b>OPEN</b></span><span>DEPLOY PIPELINE <b>READY</b></span>
+  </div>
+</div>
+
+<footer>
+  <div class="container">© CILOK TECH — Digital Operator · <a href="https://t.me/cilokesteh" target="_blank" rel="noopener">@cilokesteh</a></div>
 </footer>
 
 <script>
-// Flip word cycler - hanya 3 kata
-const flipWords = ['otomatis', 'mandiri', '24/7'];
+const navToggle = document.getElementById('navToggle');
+const topNav = document.getElementById('topNav');
+navToggle?.addEventListener('click', () => topNav.classList.toggle('open'));
+document.querySelectorAll('#topNav a').forEach(a => a.addEventListener('click', () => topNav.classList.remove('open')));
+
+/* flip word cycler */
+const flipWords = ['otomatis', 'mandiri', 'tanpa ribet', '24/7', 'sendiri'];
 const flipEl = document.getElementById('flipWord');
 let flipIdx = 0;
-
 setInterval(() => {
   flipIdx = (flipIdx + 1) % flipWords.length;
   flipEl.style.animation = 'none';
@@ -696,46 +688,26 @@ setInterval(() => {
   flipEl.textContent = flipWords[flipIdx];
 }, 3200);
 
-// Smooth scroll enhancement
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
+/* force scroll to top on every load — fixes refresh-not-returning-to-top bug */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+function forceTop() {
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  window.scrollTo(0, 0); // no smooth/instant — biar gak konflik dgn scroll-behavior CSS
+}
+window.addEventListener('DOMContentLoaded', forceTop);
+window.addEventListener('load', forceTop);
 
-// Add subtle 3D tilt effect to skill cards
-document.querySelectorAll('.skill-card').forEach(card => {
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 8;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -8;
-    card.style.transform = `translateY(-8px) rotateX(${y}deg) rotateY(${x}deg)`;
+/* touch feedback untuk skill-card di mobile — toggle class .touched biar efek neon konsisten */
+(function(){
+  var cards = document.querySelectorAll('.skill-card');
+  function addTouch(e){ e.currentTarget.classList.add('touched'); }
+  function remTouch(e){ e.currentTarget.classList.remove('touched'); }
+  cards.forEach(function(c){
+    c.addEventListener('touchstart', addTouch, {passive:true});
+    c.addEventListener('touchend', remTouch, {passive:true});
+    c.addEventListener('touchcancel', remTouch, {passive:true});
   });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-  });
-});
-
-// Add parallax scroll effect
-let ticking = false;
-window.addEventListener('scroll', () => {
-  if (!ticking) {
-    requestAnimationFrame(() => {
-      const scrolled = window.scrollY;
-      const robots = document.querySelectorAll('.flying-robot, .flying-robot2');
-      robots.forEach((robot, i) => {
-        const speed = i === 0 ? 0.15 : 0.12;
-        robot.style.transform = `translateY(${scrolled * speed}px)`;
-      });
-      ticking = false;
-    });
-    ticking = true;
-  }
-});
+})();
 </script>
 </body>
 </html>
