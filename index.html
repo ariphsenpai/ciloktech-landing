@@ -690,7 +690,7 @@ footer { border-top: 1px solid var(--border); padding: 16px 0; color: #5a5f68; f
 
 <section class="section" id="harga">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header reveal">
       <span class="section-badge">// Paket</span>
       <h2 class="section-title holo">Harga</h2>
       <p class="section-desc">Estimasi kasar. Bisa nego sesuai scope dan timeline.</p>
@@ -708,7 +708,7 @@ footer { border-top: 1px solid var(--border); padding: 16px 0; color: #5a5f68; f
 
 <section class="section" id="kontak">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header reveal">
       <span class="section-badge">// Kontak</span>
       <h2 class="section-title holo">Hubungi Cilok Tech</h2>
       <p class="section-desc">Klik icon untuk langsung buka chat di Telegram.</p>
@@ -817,7 +817,7 @@ setInterval(() => {
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.05, rootMargin: '0px 0px -10px 0px' });
     reveals.forEach(function(el) { observer.observe(el); });
   } else {
     reveals.forEach(function(el) { el.classList.add('visible'); });
