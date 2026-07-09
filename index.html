@@ -224,7 +224,31 @@ a:hover { color: var(--neon1); text-shadow: 0 0 8px var(--neon1); }
 }
 .accent { color: var(--neon1); }
 
-/* ===== Hero desc ===== */
+/* ===== FLIP WORD (hanya 3 kata: otomatis, mandiri, 24/7) ===== */
+.flip-wrap {
+  display: inline-block;
+  vertical-align: baseline;
+  height: 1.15em;
+  overflow: hidden;
+  perspective: 400px;
+}
+.flip-word {
+  display: inline-block;
+  color: var(--neon1);
+  text-shadow: 0 0 14px rgba(0,255,200,0.6);
+  transform-origin: 50% 50%;
+  animation: flipCycle 3.2s cubic-bezier(.6,.05,.3,1) infinite;
+}
+@keyframes flipCycle {
+  0%   { transform: rotateX(0deg);   opacity: 1; }
+  18%  { transform: rotateX(0deg);   opacity: 1; }
+  28%  { transform: rotateX(90deg);  opacity: 0; }
+  30%  { transform: rotateX(-90deg); opacity: 0; }
+  40%  { transform: rotateX(0deg);   opacity: 1; }
+  88%  { transform: rotateX(0deg);   opacity: 1; }
+  98%  { transform: rotateX(90deg);  opacity: 0; }
+  100% { transform: rotateX(90deg);  opacity: 0; }
+}
 .hero-desc {
   margin-top: 18px;
   color: #c5c8ce;
@@ -599,7 +623,7 @@ footer { border-top: 1px solid var(--border); padding: 16px 0; color: #5a5f68; f
   </div>
   <div>
     <div class="hero-badge">⬢ FULL-SPECTRUM DIGITAL OPERATOR</div>
-    <h1 class="hero-title">Sistem yang <span class="accent">otomatis</span><br>tanpa kamu yang urus</h1>
+    <h1 class="hero-title">Sistem yang <span class="flip-wrap"><span class="flip-word" id="flipWord">otomatis</span></span><br>tanpa kamu yang urus</h1>
     <p class="hero-desc">Website, bot, dashboard, scraping, automation, AI, crypto tools. Gue handle engineering-nya — kamu tinggal terima hasilnya.</p>
   </div>
 </section>
@@ -696,6 +720,18 @@ const navToggle = document.getElementById('navToggle');
 const topNav = document.getElementById('topNav');
 navToggle?.addEventListener('click', () => topNav.classList.toggle('open'));
 document.querySelectorAll('#topNav a').forEach(a => a.addEventListener('click', () => topNav.classList.remove('open')));
+
+/* flip word cycler — hanya 3 kata */
+const flipWords = ['otomatis', 'mandiri', '24/7'];
+const flipEl = document.getElementById('flipWord');
+let flipIdx = 0;
+setInterval(() => {
+  flipIdx = (flipIdx + 1) % flipWords.length;
+  flipEl.style.animation = 'none';
+  void flipEl.offsetWidth;
+  flipEl.style.animation = '';
+  flipEl.textContent = flipWords[flipIdx];
+}, 3200);
 
 /* smooth 3D tilt on touch devices */
 (function(){
