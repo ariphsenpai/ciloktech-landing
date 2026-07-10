@@ -380,6 +380,7 @@ a:hover { color: var(--neon1); text-shadow: 0 0 8px var(--neon1); }
 .skill-card.touched::after { opacity: 1; animation: borderSpin 3s linear infinite; }
 .skill-card:hover { transform: translateY(-4px); border-color: rgba(0,255,200,0.4); box-shadow: 0 0 22px rgba(0,255,200,0.12); }
 .skill-card:active,
+.price-card:active,
 .skill-card.touched {
   transform: translateY(-4px) scale(0.99);
   border-color: rgba(0,255,200,0.6);
@@ -428,9 +429,28 @@ a:hover { color: var(--neon1); text-shadow: 0 0 8px var(--neon1); }
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 18px;
+  position: relative;
+  overflow: hidden;
   transition: all .3s;
 }
-.price-card:hover { border-color: rgba(0,255,200,0.35); transform: translateY(-3px); box-shadow: 0 0 24px rgba(0,255,200,0.12); }
+/* Spinning neon border */
+.price-card::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: var(--radius-sm);
+  background: conic-gradient(from 0deg, transparent, var(--neon1), transparent, var(--neon2), transparent, var(--neon3), transparent);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity .25s ease;
+  animation: none;
+}
+.price-card:hover::after,
+.price-card:active::after,
+.price-card.touched::after { opacity: 1; animation: borderSpin 3s linear infinite; }
+.price-card:hover { border-color: rgba(0,255,200,0.4); transform: translateY(-4px); box-shadow: 0 0 22px rgba(0,255,200,0.12); }
+.price-card:active,
+.price-card.touched { transform: translateY(-1px) scale(0.98); border-color: rgba(0,255,200,0.5); }
 .price-card .n { color: #b8bcc4; font-size: 0.9rem; margin-bottom: 4px; }
 .price-card .p { color: var(--neon1); font-weight: 900; font-size: 1.05rem; text-shadow: 0 0 8px rgba(0,255,200,0.35); }
 
@@ -489,7 +509,7 @@ footer { border-top: 1px solid var(--border); padding: 16px 0; color: #5a5f68; f
 }
 @keyframes borderSpin { to { transform: rotate(360deg); } }
 /* ===== Neon glow on touch — ripple dari titik sentuhan ===== */
-body, .skill-card, .project-card, .contact-icon { touch-action: manipulation; }
+body, .skill-card, .project-card, .price-card, .contact-icon { touch-action: manipulation; }
 .touch-neon {
   position: fixed;
   pointer-events: none;
@@ -562,7 +582,7 @@ body, .skill-card, .project-card, .contact-icon { touch-action: manipulation; }
       <div class="skill-card reveal"><h3>⚡ Automation</h3><p>Bot massal, batch processing, cron pipelines.</p><div class="skill-marquee"><div class="track"><span>CRON</span><span>BATCH</span><span>PLAYWRIGHT</span><span>PIPELINE</span><span>MASS</span><span>SCHEDULER</span><span>CRON</span><span>BATCH</span><span>PLAYWRIGHT</span><span>PIPELINE</span><span>MASS</span><span>SCHEDULER</span></div></div></div>
       <div class="skill-card reveal"><h3>🧠 AI / Workflow</h3><p>Agent AI, RAG, workflow LLM, retrieval.</p><div class="skill-marquee"><div class="track"><span>RAG</span><span>AGENT</span><span>LLM</span><span>SUMMARIZER</span><span>RETRIEVAL</span><span>PRIVATE</span><span>RAG</span><span>AGENT</span><span>LLM</span><span>SUMMARIZER</span><span>RETRIEVAL</span><span>PRIVATE</span></div></div></div>
       <div class="skill-card reveal"><h3>⛓ Crypto Tools</h3><p>Wallet generation, DeFi, token scanner, airdrop tools.</p><div class="skill-marquee"><div class="track"><span>MULTI-CHAIN</span><span>DEFI</span><span>SCANNER</span><span>AIRDROP</span><span>WALLET</span><span>WEB3</span><span>MULTI-CHAIN</span><span>DEFI</span><span>SCANNER</span><span>AIRDROP</span><span>WALLET</span><span>WEB3</span></div></div></div>
-      <div class="skill-card"><h3>🧩 Browser Automation</h3><p>Playwright, undetected headless, session automation, OAuth helpers.</p><div class="skill-marquee"><div class="track"><span>HEADLESS</span><span>DESKTOP</span><span>OAUTH</span><span>SESSION</span><span>QA</span><span>UNDETECTED</span><span>HEADLESS</span><span>DESKTOP</span><span>OAUTH</span><span>SESSION</span><span>QA</span><span>UNDETECTED</span></div></div></div>
+      <div class="skill-card reveal"><h3>🧩 Browser Automation</h3><p>Playwright, undetected headless, session automation, OAuth helpers.</p><div class="skill-marquee"><div class="track"><span>HEADLESS</span><span>DESKTOP</span><span>OAUTH</span><span>SESSION</span><span>QA</span><span>UNDETECTED</span><span>HEADLESS</span><span>DESKTOP</span><span>OAUTH</span><span>SESSION</span><span>QA</span><span>UNDETECTED</span></div></div></div>
     </div>
   </div>
 </section>
