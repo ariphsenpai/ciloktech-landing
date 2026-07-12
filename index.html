@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CILOK TECH // DIGITAL OPERATOR</title>
-<meta name="description" content="Sistem yang berjalan sendiri. Website, bot, dashboard, scraping, automation, AI, crypto tools — gue urus engineering, kamu terima hasil.">
+<title>Cilok Tech | Jasa Bot Telegram, Website, Dashboard & Automation</title>
+<meta name="description" content="Jasa digital operator: bot Telegram, website, dashboard monitoring, automation, scraping, AI workflow, dan crypto tools. Fast delivery, hasil jalan, support included.">
+<meta name="keywords" content="jasa bot telegram, jasa website, jasa dashboard, automation, scraping, AI workflow, digital operator, cilok tech">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -454,6 +455,78 @@ a:hover { color: var(--neon1); text-shadow: 0 0 8px var(--neon1); }
 .price-card .n { color: #b8bcc4; font-size: 0.9rem; margin-bottom: 4px; }
 .price-card .p { color: var(--neon1); font-weight: 900; font-size: 1.05rem; text-shadow: 0 0 8px rgba(0,255,200,0.35); }
 
+/* ===== Buttons ===== */
+.btn-primary, .btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  border: 1px solid transparent;
+  transition: all .2s ease;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--neon1), var(--neon3));
+  color: #001a14;
+  box-shadow: 0 0 24px rgba(0,255,200,0.25);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(0,255,200,0.35);
+}
+.btn-secondary {
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  border-color: var(--border);
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(0,255,200,0.45);
+}
+
+/* ===== Projects / Proof ===== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  transition: all .25s;
+}
+.project-card:hover {
+  border-color: rgba(0,255,200,0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 0 22px rgba(0,255,200,0.12);
+}
+.project-card .tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: .72rem;
+  background: rgba(0,255,200,0.08);
+  color: var(--neon1);
+  border: 1px solid rgba(0,255,200,0.25);
+  margin-right: 6px;
+  margin-bottom: 6px;
+}
+.project-card h3 {
+  color: #fff;
+  font-size: .95rem;
+  margin: 10px 0 6px;
+}
+.project-card p {
+  color: #b8bcc4;
+  font-size: .85rem;
+  line-height: 1.5;
+}
+
 /* ===== Contact ===== */
 .contact-wrap { margin-top: 18px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 .contact-icon {
@@ -553,7 +626,9 @@ body, .skill-card, .project-card, .price-card, .contact-icon { touch-action: man
   <a href="#beranda" class="brand"><span class="logo">C</span> <span class="brand-name glitch" data-text="CILOK TECH">CILOK TECH</span></a>
   <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
   <nav class="topnav" id="topNav">
+    <a href="#beranda">Beranda</a>
     <a href="#layanan">Layanan</a>
+    <a href="#proyek">Proyek</a>
     <a href="#harga">Harga</a>
     <a href="#kontak">Kontak</a>
   </nav>
@@ -564,6 +639,11 @@ body, .skill-card, .project-card, .price-card, .contact-icon { touch-action: man
     <div class="hero-badge">⬢ FULL-SPECTRUM DIGITAL OPERATOR</div>
     <h1 class="hero-title">Sistem yang <span class="flip-wrap"><span class="flip-word" id="flipWord">otomatis</span></span><br>tanpa kamu yang urus</h1>
     <p class="hero-desc">Website, bot, dashboard, scraping, automation, AI, crypto tools. Gue handle engineering-nya — kamu tinggal terima hasilnya.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px;">
+      <a class="btn-primary" href="https://t.me/cilokesteh" target="_blank" rel="noopener">Chat Telegram</a>
+      <a class="btn-secondary" href="#proyek">Lihat contoh hasil</a>
+    </div>
+    <p style="margin-top:10px;font-size:0.85rem;color:#8a8f9f;">Response cepat • Project bisa mulai minggu ini</p>
   </div>
 </section>
 
@@ -583,6 +663,46 @@ body, .skill-card, .project-card, .price-card, .contact-icon { touch-action: man
       <div class="skill-card reveal"><h3>🧠 AI / Workflow</h3><p>Agent AI, RAG, workflow LLM, retrieval.</p><div class="skill-marquee"><div class="track"><span>RAG</span><span>AGENT</span><span>LLM</span><span>SUMMARIZER</span><span>RETRIEVAL</span><span>PRIVATE</span><span>RAG</span><span>AGENT</span><span>LLM</span><span>SUMMARIZER</span><span>RETRIEVAL</span><span>PRIVATE</span></div></div></div>
       <div class="skill-card reveal"><h3>⛓ Crypto Tools</h3><p>Wallet generation, DeFi, token scanner, airdrop tools.</p><div class="skill-marquee"><div class="track"><span>MULTI-CHAIN</span><span>DEFI</span><span>SCANNER</span><span>AIRDROP</span><span>WALLET</span><span>WEB3</span><span>MULTI-CHAIN</span><span>DEFI</span><span>SCANNER</span><span>AIRDROP</span><span>WALLET</span><span>WEB3</span></div></div></div>
       <div class="skill-card reveal"><h3>🧩 Browser Automation</h3><p>Playwright, undetected headless, session automation, OAuth helpers.</p><div class="skill-marquee"><div class="track"><span>HEADLESS</span><span>DESKTOP</span><span>OAUTH</span><span>SESSION</span><span>QA</span><span>UNDETECTED</span><span>HEADLESS</span><span>DESKTOP</span><span>OAUTH</span><span>SESSION</span><span>QA</span><span>UNDETECTED</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="proyek">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-badge">// Hasil kerja</span>
+      <h2 class="section-title holo">Contoh yang udah dikerjain</h2>
+      <p class="section-desc">Beberapa project yang udah jalan dan bisa jadi referensi.</p>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div>
+          <span class="tag">POS</span><span class="tag">Firebase</span><span class="tag">CF Pages</span>
+        </div>
+        <h3>Sistem Kasir UMKM</h3>
+        <p>Web POS + laporan harian/mingguan/bulanan + export Excel + WhatsApp receipt. Sudah live dan dipakai toko.</p>
+      </div>
+      <div class="project-card reveal">
+        <div>
+          <span class="tag">Telegram Bot</span><span class="tag">Python</span><span class="tag">24/7</span>
+        </div>
+        <h3>Auto Claim Bot</h3>
+        <p>Bot Telegram untuk auto-claim dengan face login + group mining + notifikasi. Berjalan otomatis tiap 4 jam.</p>
+      </div>
+      <div class="project-card reveal">
+        <div>
+          <span class="tag">VPS</span><span class="tag">Cloudflare</span><span class="tag">Monitoring</span>
+        </div>
+        <h3>Server Control Dashboard</h3>
+        <p>Dashboard realtime untuk kontrol service + monitoring host + Cloudflare Tunnel. Bisa diakses dari HP.</p>
+      </div>
+      <div class="project-card reveal">
+        <div>
+          <span class="tag">Automation</span><span class="tag">Scraping</span><span class="tag">Report</span>
+        </div>
+        <h3>Scraping & Reporting Tools</h3>
+        <p>Tools scraping data + otomatis export Excel/PDF + alert. Untuk tracking dan bisnis.</p>
+      </div>
     </div>
   </div>
 </section>
